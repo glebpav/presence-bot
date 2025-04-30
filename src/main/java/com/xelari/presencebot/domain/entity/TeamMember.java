@@ -1,12 +1,14 @@
 package com.xelari.presencebot.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(
         name = "team_member",
         uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "team_id"})

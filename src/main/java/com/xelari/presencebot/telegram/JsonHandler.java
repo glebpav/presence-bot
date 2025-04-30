@@ -3,6 +3,7 @@ package com.xelari.presencebot.telegram;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xelari.presencebot.telegram.callback.CallbackType;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -11,9 +12,20 @@ import java.util.List;
 public class JsonHandler {
     private final static ObjectMapper mapper = new ObjectMapper();
 
+    @Deprecated
     public static String toJson(Object object) {
         try {
             return mapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            log.error(e.getMessage());
+            return Constants.ERROR;
+        }
+    }
+
+    public static String toJson(CallbackType callbackType, Object data) {
+        try {
+            var dataList = List.of(callbackType, data);
+            return mapper.writeValueAsString(dataList);
         } catch (JsonProcessingException e) {
             log.error(e.getMessage());
             return Constants.ERROR;
@@ -36,4 +48,5 @@ public class JsonHandler {
             return List.of();
         }
     }
+
 }

@@ -3,6 +3,7 @@ package com.xelari.presencebot.telegram.command;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.command.handler.HealthCommand;
 import com.xelari.presencebot.telegram.command.handler.StartCommand;
+import com.xelari.presencebot.telegram.command.handler.TeamCommand;
 import jakarta.inject.Inject;
 import jakarta.persistence.Inheritance;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +21,16 @@ public class CommandDispatcher {
 
     private final Map<String, CommandHandler> commands;
 
-
-    public CommandDispatcher(@Autowired StartCommand startCommand) {
+    public CommandDispatcher(
+            @Autowired HealthCommand healthCommand,
+            @Autowired StartCommand startCommand,
+            @Autowired TeamCommand teamCommand
+    ) {
         this.commands = Map.of(
-                "/health", new HealthCommand(),
-                "/start", startCommand
+                "/health", healthCommand,
+                "/start", startCommand,
+                "/team", teamCommand
+                // /team -> create (set user as manager + generate code) / join ()
         );
     }
 

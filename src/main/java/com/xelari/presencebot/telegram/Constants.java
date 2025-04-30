@@ -10,6 +10,7 @@ public class Constants {
     public static final String ERROR = "Internal error";
 
     public static final String SPACE_BETWEEN = "\n\n";
+    public static final String SELECT_OPTION_MESSAGE = "Select option:";
     public static final String GREETING_MESSAGE = "Welcome to Xelari-presence-bot!";
     public static final String SUCCESSFULLY_ADDED_MESSAGE = "Successfully register you!";
     public static final String USER_ALREADY_EXISTS_MESSAGE = "It seamed that you are already registered";

@@ -1,16 +1,19 @@
 package com.xelari.presencebot.domain.entity;
 
+
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name = "team")
 public class Team extends AbstractEntity {
@@ -31,5 +34,4 @@ public class Team extends AbstractEntity {
     )
     private List<Meeting> meetings = new ArrayList<>();
 
-    // Getters and setters
 }
