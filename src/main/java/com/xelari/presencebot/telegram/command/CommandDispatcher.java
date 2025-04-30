@@ -2,12 +2,16 @@ package com.xelari.presencebot.telegram.command;
 
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.command.handler.HealthCommand;
+import com.xelari.presencebot.telegram.command.handler.StartCommand;
+import jakarta.inject.Inject;
+import jakarta.persistence.Inheritance;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @Component
@@ -16,11 +20,11 @@ public class CommandDispatcher {
 
     private final Map<String, CommandHandler> commands;
 
-    public CommandDispatcher() {
-        // TODO: pin commands
-        // commands = new HashMap<>();
+
+    public CommandDispatcher(@Autowired StartCommand startCommand) {
         this.commands = Map.of(
-                "/health", new HealthCommand()
+                "/health", new HealthCommand(),
+                "/start", startCommand
         );
     }
 
