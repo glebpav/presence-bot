@@ -1,0 +1,41 @@
+spring:
+
+  application:
+    name: presence-bot
+
+  main:
+    banner-mode: off
+
+  datasource:
+    url: jdbc:postgresql://localhost:${DB_PORT:5433}/${POSTGRES_DB:presenceDev}?createDatabaseIfNotExist=true
+    username: ${POSTGRES_USERNAME:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: PresenceBotPool
+      maximum-pool-size: 10
+      minimum-idle: 1
+      auto-commit: false
+
+  jpa:
+    show-sql: ${SHOW_SQL:true}
+    hibernate:
+      ddl-auto: create
+
+  #   properties:
+  #    hibernate.default_schema: ${POSTGRES_SCHEMA:pins}
+  #    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    enabled: false
+    change-log: classpath:/db/changelog/db.changelog.yaml
+
+  # liquibase:
+  #   default-schema: ${POSTGRES_SCHEMA:pins}
+  #   change-log: classpath:/${POSTGRES_SCHEMA:pins}/master.yml
+  #   database-change-log-table: _databasechangelog
+  #   database-change-log-lock-table: _databasechangeloglock
+
+bot:
+  name:"Xelari-presence-bot"
+  token:${BOT_TOKEN}

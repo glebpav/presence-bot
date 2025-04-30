@@ -1,0 +1,33 @@
+package com.xelari.presencebot.domain.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Data
+@Entity
+@Table(name = "team")
+public class Team extends AbstractEntity {
+
+    @Column(name = "name")
+    private String name;
+
+    @OneToMany(
+            mappedBy = "team",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<TeamMember> members = new HashSet<>();
+
+    @OneToMany(
+            mappedBy = "team",
+            cascade = CascadeType.ALL
+    )
+    private List<Meeting> meetings = new ArrayList<>();
+
+    // Getters and setters
+}

@@ -1,0 +1,28 @@
+package com.xelari.presencebot.domain.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(
+        name = "team_member",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "team_id"})
+)
+public class TeamMember extends AbstractEntity {
+
+    public enum Role {MANAGER, MEMBER}
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Team team;
+
+    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+}

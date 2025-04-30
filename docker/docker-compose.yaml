@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:14-alpine'
+    container_name: postgres
+    ports:
+      - "5433:5432"
+    env_file: ../env/.env
+    # volumes:
+    #   - ./imports/init.sql:/docker-entrypoint-initdb.d/init.sql
