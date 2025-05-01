@@ -29,8 +29,7 @@ public class CallbackDataCache {
         mapper.registerModule(new JavaTimeModule());
     }
 
-    @Deprecated
-    public <T> T getData(DataKey key, Class<T> clazz) {
+    private  <T> T getData(DataKey key, Class<T> clazz) {
         if (!cache.containsKey(key)) {
             throw new IllegalArgumentException("Key not found: " + key);
         }

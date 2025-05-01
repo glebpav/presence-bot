@@ -4,7 +4,6 @@ import com.xelari.presencebot.application.dto.team.CreateTeamRequest;
 import com.xelari.presencebot.application.exception.InvalidInputException;
 import com.xelari.presencebot.application.exception.TeamAlreadyExistsException;
 import com.xelari.presencebot.application.exception.UserNotFoundException;
-import com.xelari.presencebot.application.usecase.CheckUserNameUseCase;
 import com.xelari.presencebot.application.usecase.team.CreateTeamUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.UuidHandler;
@@ -13,8 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor

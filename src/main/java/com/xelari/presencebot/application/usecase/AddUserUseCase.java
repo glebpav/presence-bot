@@ -7,8 +7,6 @@ import com.xelari.presencebot.domain.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 @AllArgsConstructor
 public class AddUserUseCase {

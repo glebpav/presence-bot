@@ -50,7 +50,7 @@ public class CallbackDispatcher {
             answer = new SendMessage(String.valueOf(chatId), Constants.ERROR);
         } else {
 
-            Callback callback = null;
+            Callback callback;
             try {
                 callback = JsonHandler.fromJson(stringData);
             } catch (JsonProcessingException e) {

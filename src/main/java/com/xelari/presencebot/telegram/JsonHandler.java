@@ -3,7 +3,6 @@ package com.xelari.presencebot.telegram;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -11,10 +10,8 @@ import com.xelari.presencebot.telegram.callback.Callback;
 import com.xelari.presencebot.telegram.callback.CallbackDataCache;
 import com.xelari.presencebot.telegram.callback.CallbackType;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.weaver.ast.Call;
 
 import java.io.IOException;
-import java.util.List;
 
 @Slf4j
 public class JsonHandler {
@@ -36,27 +33,6 @@ public class JsonHandler {
         return mapper.readValue(json, Callback.class);
     }
 
-    @Deprecated
-    public static String toJson(Object object) {
-        try {
-            return mapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            log.error(e.getMessage());
-            return Constants.ERROR;
-        }
-    }
-
-    public static String toJson(CallbackType callbackType, Object data) {
-        try {
-            data = (data == null) ? "" : data;
-            var dataList = List.of(callbackType, data);
-            return mapper.writeValueAsString(dataList);
-        } catch (JsonProcessingException e) {
-            log.error(e.getMessage());
-            return Constants.JSON_ERROR;
-        }
-    }
-
     public static <T> T toObject(Object object, Class<T> clazz) {
         try {
             return mapper.convertValue(object, clazz);
@@ -65,7 +41,6 @@ public class JsonHandler {
         }
     }
 
-    // Custom Serializer (Callback → List)
     private static class CallbackSerializer extends JsonSerializer<Callback> {
         @Override
         public void serialize(Callback callback, JsonGenerator gen, SerializerProvider serializers) throws IOException {
@@ -76,7 +51,6 @@ public class JsonHandler {
         }
     }
 
-    // Custom Deserializer (List → Callback)
     private static class CallbackDeserializer extends JsonDeserializer<Callback> {
         @Override
         public Callback deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {

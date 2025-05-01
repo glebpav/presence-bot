@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.UUID;
-
 @Component
 @RequiredArgsConstructor
 public class StartCommand implements CommandHandler {
