@@ -22,8 +22,8 @@ public class TeamMember extends AbstractEntity {
     private User user;
 
     @ManyToOne(
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER
     )
     @JoinColumn(name = "team_id")
     private Team team;

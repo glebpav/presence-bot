@@ -1,13 +1,15 @@
 package com.xelari.presencebot.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(access = AccessLevel.PUBLIC)
 @Entity
 @Table(name = "invitation_token")
 public class InvitationToken extends AbstractEntity {
@@ -24,6 +26,8 @@ public class InvitationToken extends AbstractEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TeamMember.Role assignedRole = TeamMember.Role.MEMBER;
+    private TeamMember.Role assignedRole;
 
 }
+
+

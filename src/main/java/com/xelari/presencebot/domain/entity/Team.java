@@ -24,7 +24,8 @@ public class Team extends AbstractEntity {
     @OneToMany(
             mappedBy = "team",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     private Set<TeamMember> members = new HashSet<>();
 

@@ -20,7 +20,8 @@ spring:
   jpa:
     show-sql: ${SHOW_SQL:true}
     hibernate:
-      ddl-auto: create
+      # ddl-auto: create
+      ddl-auto: update
 
   #   properties:
   #    hibernate.default_schema: ${POSTGRES_SCHEMA:pins}
@@ -39,3 +40,6 @@ spring:
 bot:
   name:"Xelari-presence-bot"
   token:${BOT_TOKEN}
+
+invitation:
+  token-expiration-days: 1

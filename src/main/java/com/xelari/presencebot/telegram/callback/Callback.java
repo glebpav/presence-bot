@@ -10,7 +10,6 @@ import lombok.Data;
 public class Callback {
 
     private CallbackType callbackType;
-
-    private String data;
+    private CallbackDataCache.DataKey dataKey;
 
 }

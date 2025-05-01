@@ -12,7 +12,6 @@ public class CreateTeamCallbackHandler implements CallbackHandler {
 
     @Override
     public SendMessage apply(Callback callback, Update update) {
-        // System.out.println("Inside CreateTeamCallbackHandler");
         return new SendMessage(
                 update.getCallbackQuery().getMessage().getChatId().toString(),
                 Constants.ENTER_TEAM_NAME_MESSAGE
