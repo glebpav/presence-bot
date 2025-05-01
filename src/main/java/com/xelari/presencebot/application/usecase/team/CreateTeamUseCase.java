@@ -10,22 +10,21 @@ import com.xelari.presencebot.domain.entity.TeamMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Component
 @RequiredArgsConstructor
-public class CreateTeamUserCase {
+public class CreateTeamUseCase {
 
     private final UserRepository userRepository;
     private final TeamRepository teamRepository;
 
-    void execute(CreateTeamRequest createTeamRequest) {
+    public void execute(CreateTeamRequest createTeamRequest) throws TeamAlreadyExistsException {
 
         var user = userRepository
                 .findById(createTeamRequest.userId())
-                .orElseThrow(
-                        () -> new UserNotFoundException(
-                                "User with id " + createTeamRequest.userId() + " not found"
-                        )
-                );
+                .orElseThrow(UserNotFoundException::new);
 
         teamRepository
                 .findByName(createTeamRequest.name())
@@ -37,18 +36,17 @@ public class CreateTeamUserCase {
                         }
                 );
 
-
-        var team = Team.builder()
-                .name(createTeamRequest.name())
-                .build();
-
         var teamMember = TeamMember.builder()
                 .user(user)
-                .team(team)
                 .role(TeamMember.Role.MANAGER)
                 .build();
 
-        team.getMembers().add(teamMember);
+        var team = Team.builder()
+                .name(createTeamRequest.name())
+                .members(Set.of(teamMember))
+                .build();
+
+        teamMember.setTeam(team);
         teamRepository.save(team);
 
     }

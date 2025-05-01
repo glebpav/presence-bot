@@ -7,6 +7,8 @@ import com.xelari.presencebot.domain.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 @AllArgsConstructor
 public class AddUserUseCase {
@@ -15,9 +17,8 @@ public class AddUserUseCase {
 
     public void execute(UserCreationRequest userCreationRequest) throws UserAlreadyExistsException {
         userRepository
-                .findByNameAndSecondName(
-                        userCreationRequest.name(),
-                        userCreationRequest.secondName()
+                .findById(
+                        userCreationRequest.id()
                 ).ifPresentOrElse(
                         (it) -> {
                             throw new UserAlreadyExistsException(
@@ -26,6 +27,7 @@ public class AddUserUseCase {
                         },
                         () -> userRepository.save(
                                 new User(
+                                        userCreationRequest.id(),
                                         userCreationRequest.name(),
                                         userCreationRequest.secondName(),
                                         userCreationRequest.backConnection()

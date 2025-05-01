@@ -14,5 +14,8 @@ public class Constants {
     public static final String GREETING_MESSAGE = "Welcome to Xelari-presence-bot!";
     public static final String SUCCESSFULLY_ADDED_MESSAGE = "Successfully register you!";
     public static final String USER_ALREADY_EXISTS_MESSAGE = "It seamed that you are already registered";
+    public static final String ENTER_TEAM_NAME_MESSAGE = "Please enter command `/create_team [name]` to create team";
+    public static final String TEAM_WAS_CREATED_MESSAGE = "Successfully added team!";
+    public static final String TEAM_ALREADY_EXISTS_MESSAGE = "Team with this name already exists!";
 
 }

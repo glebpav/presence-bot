@@ -24,6 +24,7 @@ public class JsonHandler {
 
     public static String toJson(CallbackType callbackType, Object data) {
         try {
+            data = (data == null) ? "" : data;
             var dataList = List.of(callbackType, data);
             return mapper.writeValueAsString(dataList);
         } catch (JsonProcessingException e) {

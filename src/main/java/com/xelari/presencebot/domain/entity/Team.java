@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"members", "meetings"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(access = AccessLevel.PUBLIC)
@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name = "team")
 public class Team extends AbstractEntity {
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
     @OneToMany(

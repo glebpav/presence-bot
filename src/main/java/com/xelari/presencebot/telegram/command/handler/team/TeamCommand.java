@@ -1,11 +1,9 @@
-package com.xelari.presencebot.telegram.command.handler;
+package com.xelari.presencebot.telegram.command.handler.team;
 
-import com.xelari.presencebot.application.persistence.UserRepository;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.JsonHandler;
 import com.xelari.presencebot.telegram.callback.CallbackType;
 import com.xelari.presencebot.telegram.command.CommandHandler;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;

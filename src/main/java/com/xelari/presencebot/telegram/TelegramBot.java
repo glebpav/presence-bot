@@ -11,15 +11,15 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.Queue;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
 public class TelegramBot extends TelegramLongPollingBot {
 
     public final BotConfig botConfig;
-
     public final CommandDispatcher commandDispatcher;
-
     public final CallbackDispatcher callbacksDispatcher;
 
     @Override

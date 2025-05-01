@@ -3,10 +3,8 @@ package com.xelari.presencebot.telegram.command;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.command.handler.HealthCommand;
 import com.xelari.presencebot.telegram.command.handler.StartCommand;
-import com.xelari.presencebot.telegram.command.handler.TeamCommand;
-import jakarta.inject.Inject;
-import jakarta.persistence.Inheritance;
-import lombok.RequiredArgsConstructor;
+import com.xelari.presencebot.telegram.command.handler.team.CreateTeamCommand;
+import com.xelari.presencebot.telegram.command.handler.team.TeamCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,12 +22,14 @@ public class CommandDispatcher {
     public CommandDispatcher(
             @Autowired HealthCommand healthCommand,
             @Autowired StartCommand startCommand,
-            @Autowired TeamCommand teamCommand
-    ) {
+            @Autowired TeamCommand teamCommand,
+            @Autowired CreateTeamCommand createTeamCommand
+            ) {
         this.commands = Map.of(
                 "/health", healthCommand,
                 "/start", startCommand,
-                "/team", teamCommand
+                "/team", teamCommand,
+                "/create_team", createTeamCommand
                 // /team -> create (set user as manager + generate code) / join ()
         );
     }
@@ -41,7 +41,11 @@ public class CommandDispatcher {
 
         var commandHandler = commands.get(command);
         if (commandHandler != null) {
-            return commandHandler.apply(update);
+            // try {
+                return commandHandler.apply(update);
+            // }  catch (Exception e) {
+            //     return new SendMessage(String.valueOf(chatId), e.getMessage());
+            // }
         } else {
             return new SendMessage(String.valueOf(chatId), Constants.UNKNOWN_COMMAND);
         }

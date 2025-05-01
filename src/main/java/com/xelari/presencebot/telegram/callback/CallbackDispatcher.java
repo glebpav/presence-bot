@@ -2,6 +2,9 @@ package com.xelari.presencebot.telegram.callback;
 
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.JsonHandler;
+import com.xelari.presencebot.telegram.callback.handler.team.CreateTeamCallbackHandler;
+import com.xelari.presencebot.telegram.command.handler.team.CreateTeamCommand;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -15,17 +18,14 @@ public class CallbackDispatcher {
 
     private final Map<CallbackType, CallbackHandler> callbacks;
 
-    public CallbackDispatcher() {
+    public CallbackDispatcher(
+            @Autowired CreateTeamCallbackHandler createTeamCallbackHandler
+    ) {
         // TODO: fill callback map
-        callbacks = new HashMap<>();
-        /*this.callbacks = Map.of(CallbackType.TYPE_CHOOSE, typeChooseCallback,
-                CallbackType.CITY_CHOOSE, cityChooseCallback,
-                CallbackType.ADDRESS_CHOOSE, addressChooseCallback,
-                CallbackType.PIN_OK, pinReviewCallback,
-                CallbackType.PIN_WRONG, pinReviewCallback,
-                CallbackType.PIN_ADD, pinActionCallback,
-                CallbackType.PIN_DONT_ADD, pinActionCallback
-        );*/
+        this.callbacks = Map.of(
+                CallbackType.CREATE_TEAM, createTeamCallbackHandler
+        );
+
     }
 
     public SendMessage handleCallbacks(Update update) {

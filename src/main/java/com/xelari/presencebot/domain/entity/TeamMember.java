@@ -3,7 +3,7 @@ package com.xelari.presencebot.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, exclude = {"team", "user"})
 @Data
 @Entity
 @Builder
@@ -21,7 +21,10 @@ public class TeamMember extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.PERSIST
+    )
     @JoinColumn(name = "team_id")
     private Team team;
 
