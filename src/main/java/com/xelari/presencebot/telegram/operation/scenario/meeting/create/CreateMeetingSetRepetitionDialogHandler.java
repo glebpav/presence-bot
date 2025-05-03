@@ -1,14 +1,14 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
+import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.CallbackType;
+import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogHandler;
 import com.xelari.presencebot.telegram.ui.ButtonBuilder;
 import com.xelari.presencebot.telegram.ui.ButtonDescription;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -16,34 +16,25 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class CreateMeetingSelectTimeDialogHandler implements DialogHandler {
-
-    @Setter
-    @Getter
-    private class UserData {
-        UUID teamId;
-        LocalDateTime time;
-        int durationMinutes;
-    }
+public class CreateMeetingSetRepetitionDialogHandler implements DialogHandler {
 
     private final ButtonBuilder buttonBuilder;
+    private final DialogDataCache dialogDataCache;
 
-    private final Map<Long, UserData> cashedData = new HashMap<>();
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
 
     @Override
     public SendMessage apply(Update update, long chatId) {
 
-        var data = cashedData.get(chatId);
+        System.out.println("in repetition dialog");
 
-        if (data == null || data.teamId == null) {
+        var data = dialogDataCache.getData(chatId, CreateMeetingRequest.class);
+
+        if (data == null || data.teamId() == null) {
             throw new RuntimeException("Data should be set");
         }
 
@@ -60,7 +51,7 @@ public class CreateMeetingSelectTimeDialogHandler implements DialogHandler {
                         text.trim(),
                         dateTimeFormatter
                 );
-                data.setTime(time);
+                data = data.withTime(time);
                 message.setText(Constants.SELECT_MEETING_REPETITIONS_MESSAGE);
                 addKeyboard(message, data);
             } catch (DateTimeParseException e) {
@@ -71,7 +62,7 @@ public class CreateMeetingSelectTimeDialogHandler implements DialogHandler {
         return message;
     }
 
-    private void addKeyboard(SendMessage message, UserData data) {
+    private void addKeyboard(SendMessage message, CreateMeetingRequest data) {
 
         List<ButtonDescription> buttonsDescription = List.of(
                 new ButtonDescription(MeetingRepeat.NONE.getDescription(),
@@ -93,12 +84,6 @@ public class CreateMeetingSelectTimeDialogHandler implements DialogHandler {
         );
 
         buttonBuilder.addVerticalKeyboard(message, buttonsDescription);
-    }
-
-    public void prepareTeam(long chatId, UUID teamId) {
-        var userData = new UserData();
-        userData.setTeamId(teamId);
-        cashedData.put(chatId, userData);
     }
 
 }

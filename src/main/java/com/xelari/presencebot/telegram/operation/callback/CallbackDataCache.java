@@ -49,6 +49,7 @@ public class CallbackDataCache {
 
     public <T> T getData(Callback callback, Class<T> clazz) {
         DataKey dataKey = JsonHandler.toObject(callback.getDataKey(), DataKey.class);
+        System.out.println(dataKey);
         return getData(dataKey, clazz);
     }
 

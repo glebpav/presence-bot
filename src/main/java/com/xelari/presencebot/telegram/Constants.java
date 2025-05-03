@@ -47,8 +47,12 @@ public class Constants {
         );
     }
 
+    public static String INPUT_MEETING_TIME_MESSAGE = "Please, enter meeting time";
     public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
     public static String SELECT_MEETING_REPETITIONS_MESSAGE = "Select repetitions:";
+    public static String ENTER_MEETING_NAME_MESSAGE = "Please, enter meeting name";
+    public static String SHOULD_I_ADD_DESCRIPTION_MESSAGE = "Should we add description?";
+    public static String ENTER_MEETING_DESCRIPTION_MESSAGE = "Please, enter meeting description";
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")

@@ -23,7 +23,6 @@ public class CreateMeetingSelectTeamCallbackHandler implements CallbackHandler {
 
     private final ButtonBuilder buttonBuilder;
     private final FindManagingTeamsUseCase findManagingTeamsUseCase;
-    private final CallbackDataCache callbackDataCache;
 
     @Override
     public SendMessage apply(Callback callback, Update update) {
@@ -52,13 +51,13 @@ public class CreateMeetingSelectTeamCallbackHandler implements CallbackHandler {
 
     private void addKeyboard(SendMessage sendMessage, List<Team> managingTeams) {
 
-        buttonBuilder.addHorizontalKeyboard(
+        buttonBuilder.addVerticalKeyboard(
                 sendMessage,
                 managingTeams.stream().map(team ->
                         new ButtonDescription(
                                 team.getName() + " [ " + team.getMembers().size() + " members ]",
                                 CallbackType.CREATE_MEETING_TEAM_SELECTED,
-                                callbackDataCache.putData(team.getId())
+                                team.getId()
                         )
                 ).toList()
         );

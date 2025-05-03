@@ -3,6 +3,7 @@ package com.xelari.presencebot.telegram;
 import com.xelari.presencebot.telegram.operation.callback.CallbackDispatcher;
 import com.xelari.presencebot.telegram.operation.command.CommandDispatcher;
 import com.xelari.presencebot.telegram.config.BotConfig;
+import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     public final BotConfig botConfig;
     public final CommandDispatcher commandDispatcher;
     public final CallbackDispatcher callbacksDispatcher;
+    public final DialogDispatcher dialogDispatcher;
 
     @Override
     public String getBotUsername() {
@@ -35,11 +37,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            String chatId = update.getMessage().getChatId().toString();
             if (update.getMessage().getText().startsWith("/")) {
                 sendMessage(commandDispatcher.handleCommands(update));
             } else {
-                sendMessage(new SendMessage(chatId, Constants.CANT_UNDERSTAND));
+                sendMessage(dialogDispatcher.handleDialogs(update));
+                // sendMessage(new SendMessage(chatId, Constants.CANT_UNDERSTAND));
             }
         } else if (update.hasCallbackQuery()) {
             sendMessage(callbacksDispatcher.handleCallbacks(update));

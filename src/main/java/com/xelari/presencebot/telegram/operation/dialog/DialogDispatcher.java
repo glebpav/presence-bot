@@ -1,6 +1,7 @@
 package com.xelari.presencebot.telegram.operation.dialog;
 
 import com.xelari.presencebot.telegram.Constants;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -9,13 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@RequiredArgsConstructor
 public class DialogDispatcher {
 
-    Map<Long, DialogHandler> handlers = new HashMap<>();
+    private final Map<Long, DialogHandler> handlers = new HashMap<>();
 
-    public SendMessage handleCallbacks(Update update) {
+    public SendMessage handleDialogs(Update update) {
 
-        long chatId = update.getCallbackQuery().getMessage().getChatId();
+        long chatId = update.getMessage().getChatId();
 
         SendMessage answer;
         var callbackBiFunction = handlers.get(chatId);
@@ -27,5 +29,9 @@ public class DialogDispatcher {
         }
 
         return answer;
+    }
+
+    public void putHandler(long chatId, DialogHandler handler) {
+        handlers.put(chatId, handler);
     }
 }
