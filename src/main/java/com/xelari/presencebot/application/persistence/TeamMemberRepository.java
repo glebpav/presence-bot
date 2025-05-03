@@ -1,6 +1,6 @@
 package com.xelari.presencebot.application.persistence;
 
-import com.xelari.presencebot.domain.entity.TeamMember;
+import com.xelari.presencebot.domain.entity.team.TeamMember;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

@@ -15,9 +15,8 @@ public class AddUserUseCase {
 
     public void execute(UserCreationRequest userCreationRequest) throws UserAlreadyExistsException {
         userRepository
-                .findById(
-                        userCreationRequest.id()
-                ).ifPresentOrElse(
+                .findById(userCreationRequest.id())
+                .ifPresentOrElse(
                         (it) -> {
                             throw new UserAlreadyExistsException(
                                     "User with this name already exists"

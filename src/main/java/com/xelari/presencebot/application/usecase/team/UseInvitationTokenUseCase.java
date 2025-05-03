@@ -8,13 +8,12 @@ import com.xelari.presencebot.application.exception.UserNotFoundException;
 import com.xelari.presencebot.application.persistence.InvitationTokenRepository;
 import com.xelari.presencebot.application.persistence.TeamRepository;
 import com.xelari.presencebot.application.persistence.UserRepository;
-import com.xelari.presencebot.domain.entity.Team;
-import com.xelari.presencebot.domain.entity.TeamMember;
+import com.xelari.presencebot.domain.entity.team.Team;
+import com.xelari.presencebot.domain.entity.team.TeamMember;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.beans.Transient;
 import java.time.LocalDateTime;
 
 @Component

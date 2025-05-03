@@ -1,7 +1,7 @@
 package com.xelari.presencebot.telegram;
 
-import com.xelari.presencebot.telegram.callback.CallbackDispatcher;
-import com.xelari.presencebot.telegram.command.CommandDispatcher;
+import com.xelari.presencebot.telegram.operation.callback.CallbackDispatcher;
+import com.xelari.presencebot.telegram.operation.command.CommandDispatcher;
 import com.xelari.presencebot.telegram.config.BotConfig;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

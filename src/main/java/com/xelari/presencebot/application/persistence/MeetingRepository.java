@@ -1,6 +1,6 @@
 package com.xelari.presencebot.application.persistence;
 
-import com.xelari.presencebot.domain.entity.Meeting;
+import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

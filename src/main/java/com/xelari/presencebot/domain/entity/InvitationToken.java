@@ -1,5 +1,7 @@
 package com.xelari.presencebot.domain.entity;
 
+import com.xelari.presencebot.domain.entity.team.Team;
+import com.xelari.presencebot.domain.entity.team.TeamMember;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,5 +1,6 @@
 package com.xelari.presencebot.domain.entity;
 
+import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

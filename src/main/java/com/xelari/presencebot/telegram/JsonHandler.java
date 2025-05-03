@@ -6,9 +6,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.xelari.presencebot.telegram.callback.Callback;
-import com.xelari.presencebot.telegram.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.callback.CallbackType;
+import com.xelari.presencebot.telegram.operation.callback.Callback;
+import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
+import com.xelari.presencebot.telegram.operation.callback.CallbackType;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;

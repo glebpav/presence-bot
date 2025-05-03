@@ -5,8 +5,8 @@ import com.xelari.presencebot.application.exception.TeamAlreadyExistsException;
 import com.xelari.presencebot.application.exception.UserNotFoundException;
 import com.xelari.presencebot.application.persistence.TeamRepository;
 import com.xelari.presencebot.application.persistence.UserRepository;
-import com.xelari.presencebot.domain.entity.Team;
-import com.xelari.presencebot.domain.entity.TeamMember;
+import com.xelari.presencebot.domain.entity.team.Team;
+import com.xelari.presencebot.domain.entity.team.TeamMember;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,10 @@
 package com.xelari.presencebot.telegram;
 
-import com.xelari.presencebot.domain.entity.Team;
+import com.xelari.presencebot.domain.entity.team.Team;
 
 public class Constants {
+
+    public static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm";
 
     public static final String START_MESSAGE = "Hello, this is ...";
     public static final String HEALTH_MESSAGE = "Bot is alive";
@@ -44,6 +46,9 @@ public class Constants {
                 team.getMeetings().size()
         );
     }
+
+    public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
+    public static String SELECT_MEETING_REPETITIONS_MESSAGE = "Select repetitions:";
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")
