@@ -26,6 +26,6 @@ public class Meeting extends AbstractEntity {
     private User creator;
 
     @OneToMany(mappedBy = "meeting", cascade = CascadeType.ALL)
-    private Set<Attendance> attendances = new HashSet<>();
+    private Set<Attendance> attendances;
 
 }

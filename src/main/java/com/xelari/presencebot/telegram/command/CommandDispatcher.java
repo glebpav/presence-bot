@@ -4,6 +4,7 @@ import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.command.handler.HealthCommand;
 import com.xelari.presencebot.telegram.command.handler.StartCommand;
 import com.xelari.presencebot.telegram.command.handler.team.CreateTeamCommand;
+import com.xelari.presencebot.telegram.command.handler.team.JoinTeamCommand;
 import com.xelari.presencebot.telegram.command.handler.team.TeamCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,15 @@ public class CommandDispatcher {
             @Autowired HealthCommand healthCommand,
             @Autowired StartCommand startCommand,
             @Autowired TeamCommand teamCommand,
-            @Autowired CreateTeamCommand createTeamCommand
+            @Autowired CreateTeamCommand createTeamCommand,
+            @Autowired JoinTeamCommand joinTeamCommand
             ) {
         this.commands = Map.of(
                 "/health", healthCommand,
                 "/start", startCommand,
                 "/team", teamCommand,
-                "/create_team", createTeamCommand
+                "/create_team", createTeamCommand,
+                "/join_team", joinTeamCommand
                 // /team -> create (set user as manager + generate code) / join ()
         );
     }

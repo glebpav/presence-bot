@@ -147,4 +147,3 @@ This project is proprietary software developed for and owned by Xelari. All righ
 <div align="center">
   <sub>Built with ❤︎ by <a href="https://xelari.com">Xelari Team</a></sub>
 </div>
-```

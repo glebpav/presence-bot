@@ -4,8 +4,6 @@ package com.xelari.presencebot.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -27,12 +25,13 @@ public class Team extends AbstractEntity {
             orphanRemoval = true,
             fetch = FetchType.EAGER
     )
-    private Set<TeamMember> members = new HashSet<>();
+    private Set<TeamMember> members;
 
     @OneToMany(
             mappedBy = "team",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
-    private List<Meeting> meetings = new ArrayList<>();
+    private List<Meeting> meetings;
 
 }

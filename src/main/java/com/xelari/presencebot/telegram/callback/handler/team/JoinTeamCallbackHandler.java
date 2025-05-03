@@ -1,5 +1,6 @@
 package com.xelari.presencebot.telegram.callback.handler.team;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.callback.Callback;
 import com.xelari.presencebot.telegram.callback.CallbackHandler;
@@ -8,16 +9,15 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
-public class CreateTeamCallbackHandler implements CallbackHandler {
-
+public class JoinTeamCallbackHandler implements CallbackHandler {
+    
     @Override
-    public SendMessage apply(Callback callback, Update update) {
-        var message = new SendMessage(
+    public SendMessage apply(Callback callback, Update update) throws JsonProcessingException {
+        SendMessage message = new SendMessage(
                 update.getCallbackQuery().getMessage().getChatId().toString(),
-                Constants.ENTER_TEAM_NAME_MESSAGE
+                Constants.JOIN_TEAM_MESSAGE
         );
         message.enableHtml(true);
         return message;
     }
-
 }

@@ -7,7 +7,7 @@ spring:
     banner-mode: off
 
   datasource:
-    url: jdbc:postgresql://localhost:${DB_PORT:5433}/${POSTGRES_DB:presenceDev}?createDatabaseIfNotExist=true
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${POSTGRES_DB:presenceDev}?createDatabaseIfNotExist=true
     username: ${POSTGRES_USERNAME:postgres}
     password: ${POSTGRES_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -23,9 +23,9 @@ spring:
       # ddl-auto: create
       ddl-auto: update
 
-  #   properties:
+    properties:
   #    hibernate.default_schema: ${POSTGRES_SCHEMA:pins}
-  #    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+     hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
 
   liquibase:
     enabled: false
