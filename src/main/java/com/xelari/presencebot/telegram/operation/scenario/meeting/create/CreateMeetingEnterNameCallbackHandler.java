@@ -23,7 +23,7 @@ public class CreateMeetingEnterNameCallbackHandler implements CallbackHandler {
     private final DialogDataCache dialogDataCache;
     private final DialogDispatcher dialogDispatcher;
 
-    private final CreateMeetingAddDescriptionDialogHandler createMeetingAddDescriptionDialogHandler;
+    private final CreateMeetingEnterDescriptionDialogHandler enterDescriptionCallbackHandler;
 
     @Override
     public SendMessage apply(Callback callback, Update update) throws JsonProcessingException {
@@ -46,7 +46,7 @@ public class CreateMeetingEnterNameCallbackHandler implements CallbackHandler {
 
         dialogDispatcher.putHandler(
                 chatId,
-                createMeetingAddDescriptionDialogHandler
+                enterDescriptionCallbackHandler
         );
 
         return message;
