@@ -19,6 +19,8 @@ import java.util.Set;
 @Table(name = "meeting")
 public class Meeting extends AbstractEntity {
 
+    // TODO: add name and description
+
     @Column(name = "shceduled_time")
     private LocalDateTime scheduledTime;
 
@@ -31,5 +33,10 @@ public class Meeting extends AbstractEntity {
 
     @Column(name = "duration_minutes")
     private int durationMinutes;
+
+    @Override
+    public String toString() {
+        return "Time: %s; duration: %d".formatted(scheduledTime.toString(), durationMinutes);
+    }
 
 }

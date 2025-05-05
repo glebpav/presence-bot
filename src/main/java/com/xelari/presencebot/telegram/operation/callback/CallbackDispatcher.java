@@ -6,6 +6,8 @@ import com.xelari.presencebot.telegram.JsonHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterNameCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterRepeatCountCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingSelectTeamCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingAllCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingSelectTypeCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.team.create.CreateTeamCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.team.invite.InviteMemberGenerateTokenCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.team.invite.InviteMemberSelectRoleCallbackHandler;
@@ -31,7 +33,9 @@ public class CallbackDispatcher {
             @Autowired JoinTeamCallbackHandler enterTeamCallbackHandler,
             @Autowired CreateMeetingEnterNameCallbackHandler createMeetingEnterNameCallbackHandler,
             @Autowired CreateMeetingSelectTeamCallbackHandler createMeetingSelectTeamCallbackHandler,
-            @Autowired CreateMeetingEnterRepeatCountCallbackHandler createMeetingEnterRepeatCountCallbackHandler
+            @Autowired CreateMeetingEnterRepeatCountCallbackHandler createMeetingEnterRepeatCountCallbackHandler,
+            @Autowired ShowMeetingSelectTypeCallbackHandler showMeetingSelectTypeCallbackHandler,
+            @Autowired ShowMeetingAllCallbackHandler showMeetingAllCallbackHandler
             ) {
 
         this.callbacks = Map.of(
@@ -40,14 +44,16 @@ public class CallbackDispatcher {
                 CallbackType.INVITE_MEMBER_SELECT_ROLE, inviteMemberSelectRoleCallbackHandler,
                 CallbackType.INVITE_MEMBER_GENERATE_TOKEN, inviteMemberGenerateTokenCallbackHandler,
                 CallbackType.ENTER_TEAM, enterTeamCallbackHandler,
-                CallbackType.CREATE_MEETING_SELECT_TEAM, createMeetingSelectTeamCallbackHandler,
+                CallbackType.CREATE_MEETING, createMeetingSelectTeamCallbackHandler,
                 CallbackType.CREATE_MEETING_TEAM_SELECTED, createMeetingEnterNameCallbackHandler,
-                CallbackType.CREATE_MEETING_REPEAT_SELECTED, createMeetingEnterRepeatCountCallbackHandler
+                CallbackType.CREATE_MEETING_REPEAT_SELECTED, createMeetingEnterRepeatCountCallbackHandler,
+                CallbackType.SHOW_MY_MEETINGS, showMeetingSelectTypeCallbackHandler,
+                CallbackType.SHOW_MEETINGS_ALL_MEETINGS, showMeetingAllCallbackHandler
         );
 
     }
 
-    public SendMessage handleCallbacks(Update update) throws JsonProcessingException {
+    public SendMessage  handleCallbacks(Update update) throws JsonProcessingException {
 
         String stringData = update.getCallbackQuery().getData();
         long chatId = update.getCallbackQuery().getMessage().getChatId();

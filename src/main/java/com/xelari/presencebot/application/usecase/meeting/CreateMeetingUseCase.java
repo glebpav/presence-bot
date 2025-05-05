@@ -45,6 +45,7 @@ public class CreateMeetingUseCase {
 
         for (int i = 0; i < request.repeatCount(); i++) {
             Meeting meeting = createSingleMeeting(
+
                     team,
                     nextMeetingTime,
                     request.durationMinutes()

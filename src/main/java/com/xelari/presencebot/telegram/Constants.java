@@ -1,9 +1,11 @@
 package com.xelari.presencebot.telegram;
 
 import com.xelari.presencebot.domain.entity.InvitationToken;
+import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import com.xelari.presencebot.domain.entity.team.Team;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class Constants {
 
@@ -72,6 +74,20 @@ public class Constants {
     public static String SELECT_MEETING_REPETITIONS_MESSAGE = "Please, enter count of repetitions:";
     public static String MEETING_CREATED_SUCCESSFULLY_MESSAGE = "Meeting(s) was(were) created successfully!";
     public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
+
+    public static String SELECT_MEETING_SHOW_TYPE_MESSAGE = "Please, select to show meeting for appropriate team or all your meetings";
+    public static String NO_MEETING_WAS_FOUND_MESSAGE = "No meeting was found!";
+
+    public static String FOUND_MEETING_MESSAGE(List<Meeting> meetings) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < meetings.size(); i++) {
+            stringBuilder
+                    .append("%d. ".formatted(i + 1))
+                    .append(meetings.get(i).toString())
+                    .append("\n");
+        }
+        return stringBuilder.toString();
+    }
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")
