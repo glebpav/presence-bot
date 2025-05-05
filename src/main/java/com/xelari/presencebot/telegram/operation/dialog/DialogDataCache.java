@@ -32,4 +32,8 @@ public class DialogDataCache {
         }
     }
 
+    public void removeData(long chatId) {
+        cache.remove(chatId);
+    }
+
 }

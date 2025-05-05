@@ -17,36 +17,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @RequiredArgsConstructor
 public class CreateTeamCommand implements CommandHandler {
 
-    private final CreateTeamUseCase createTeamUseCase;
-
     @Override
     public SendMessage apply(Update update) {
 
-        var userId = UuidHandler.longToUUID(update.getMessage().getFrom().getId());
-
-        var parsedInput = update.getMessage().getText().split(" ");
-        if (parsedInput.length < 2) {
-            throw new InvalidInputException();
-        }
-        var nameBuilder = new StringBuilder();
-        for (int i = 1; i < parsedInput.length; i++) {
-            nameBuilder.append(parsedInput[i]);
-        }
-        var teamName = nameBuilder.toString();
-
-        var createTeamRequest = new CreateTeamRequest(userId, teamName);
-
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(update.getMessage().getChatId());
-
-        try {
-            createTeamUseCase.execute(createTeamRequest);
-            sendMessage.setText(Constants.TEAM_WAS_CREATED_MESSAGE);
-        } catch (UserNotFoundException e) {
-            sendMessage.setText(e.getMessage());
-        } catch (TeamAlreadyExistsException e) {
-            sendMessage.setText(Constants.TEAM_ALREADY_EXISTS_MESSAGE);
-        }
 
         return sendMessage;
     }

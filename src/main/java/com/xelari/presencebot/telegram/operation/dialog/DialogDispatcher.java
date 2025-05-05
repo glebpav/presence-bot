@@ -34,4 +34,8 @@ public class DialogDispatcher {
     public void putHandler(long chatId, DialogHandler handler) {
         handlers.put(chatId, handler);
     }
+
+    public void removeHandler(long chatId) {
+        handlers.remove(chatId);
+    }
 }

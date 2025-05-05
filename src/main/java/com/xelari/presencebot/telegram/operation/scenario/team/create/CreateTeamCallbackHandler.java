@@ -3,20 +3,30 @@ package com.xelari.presencebot.telegram.operation.scenario.team.create;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
 import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
+@RequiredArgsConstructor
 public class CreateTeamCallbackHandler implements CallbackHandler {
+
+    private final DialogDispatcher dialogDispatcher;
+    private final CreateTeamFinalDialogHandler createTeamFinalDialogHandler;
 
     @Override
     public SendMessage apply(Callback callback, Update update) {
+
+        var chatId = update.getCallbackQuery().getMessage().getChatId();
+
         var message = new SendMessage(
                 update.getCallbackQuery().getMessage().getChatId().toString(),
                 Constants.ENTER_TEAM_NAME_MESSAGE
         );
-        message.enableHtml(true);
+
+        dialogDispatcher.putHandler(chatId, createTeamFinalDialogHandler);
         return message;
     }
 
