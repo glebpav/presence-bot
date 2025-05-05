@@ -101,7 +101,6 @@ Follows Clean Architecture principles with clear separation between:
 
 3. Build and run:
    ```bash
-   ./gradlew build
    docker-compose up -d
    ```
 
