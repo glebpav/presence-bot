@@ -28,7 +28,7 @@ public class Constants {
     public static final String SELECT_TEAM_MESSAGE = "Select team:";
     public static final String SELECT_ROLE_MESSAGE = "Select role:";
     public static final String ENTER_TEAM_NAME_MESSAGE = "Please, enter team name";
-    public static final String JOIN_TEAM_MESSAGE = "Please, enter command\n<code>/join_team [token]</code>\nto join team";
+    public static final String JOIN_TEAM_MESSAGE = "Please, enter invitation token";
     public static final String TEAM_WAS_CREATED_MESSAGE = "Successfully create team!";
     public static final String TEAM_ALREADY_EXISTS_MESSAGE = "Team with this name already exists!";
     public static final String INVITATION_TOKEN_CREATED_MESSAGE = "Your invitation token was created successfully!";

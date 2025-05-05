@@ -5,7 +5,8 @@ import com.xelari.presencebot.application.exception.*;
 import com.xelari.presencebot.application.usecase.team.UseInvitationTokenUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.UuidHandler;
-import com.xelari.presencebot.telegram.operation.command.CommandHandler;
+import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
+import com.xelari.presencebot.telegram.operation.dialog.DialogHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -13,33 +14,35 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
 @RequiredArgsConstructor
-public class JoinTeamCommand implements CommandHandler {
+public class JoinTeamDialogHandler implements DialogHandler {
 
     private final UseInvitationTokenUseCase useInvitationTokenUseCase;
+    private final DialogDispatcher dialogDispatcher;
 
     @Override
-    public SendMessage apply(Update update) {
+    public SendMessage apply(Update update, long chatId) {
 
         var userId = UuidHandler.longToUUID(update.getMessage().getFrom().getId());
-        var chatId = update.getMessage().getChatId();
-
-        var parsedInput = update.getMessage().getText().split(" ");
-        if (parsedInput.length < 2) {
-            throw new InvalidInputException();
-        }
-
-        var useInvitationTokenRequest = new UseInvitationTokenRequest(
-                parsedInput[1],
-                userId
-        );
+        var tokenString = update.getMessage().getText();
 
         var message = new SendMessage();
         message.enableHtml(true);
         message.setChatId(chatId);
 
+        if (tokenString == null || tokenString.isBlank()) {
+            message.setText(Constants.INPUT_CANT_BE_BLANK_MESSAGE);
+            return message;
+        }
+
+        var useInvitationTokenRequest = new UseInvitationTokenRequest(
+                tokenString.trim(),
+                userId
+        );
+
         try {
             var team = useInvitationTokenUseCase.execute(useInvitationTokenRequest);
             message.setText(Constants.SUCCESSFUL_JOINED_TEAM_MESSAGE(team));
+            dialogDispatcher.removeHandler(chatId);
         } catch (UserNotFoundException e) {
             message.setText(Constants.USER_NOT_FOUND_MESSAGE);
         } catch (TokenNotFoundException e) {
