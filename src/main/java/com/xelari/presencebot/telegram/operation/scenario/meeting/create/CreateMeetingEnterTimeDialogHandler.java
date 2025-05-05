@@ -18,22 +18,22 @@ public class CreateMeetingEnterTimeDialogHandler implements DialogHandler {
     private final DialogDataCache dialogDataCache;
     private final DialogDispatcher dialogDispatcher;
 
-    private final CreateMeetingSetRepetitionDialogHandler createMeetingSetRepetitionDialogHandler;
+    private final CreateMeetingEnterDurationDialogHandler createMeetingEnterDurationDialogHandler;
 
     @Override
     public SendMessage apply(Update update, long chatId) {
 
         var data = dialogDataCache.getData(chatId, CreateMeetingRequest.class);
-        var meetingName = update.getMessage().getText();
+        var meetingDescription = update.getMessage().getText();
 
-        if (meetingName == null || meetingName.isEmpty()) {
+        if (meetingDescription == null || meetingDescription.isBlank()) {
             throw new InputCantBeEmpty();
         }
 
-        data = data.withName(meetingName);
+        data = data.withDescription(meetingDescription);
 
-        dialogDataCache.put(chatId, data);
-        dialogDispatcher.putHandler(chatId, createMeetingSetRepetitionDialogHandler);
+        dialogDataCache.putData(chatId, data);
+        dialogDispatcher.putHandler(chatId, createMeetingEnterDurationDialogHandler);
 
         return new SendMessage(
                 String.valueOf(chatId),

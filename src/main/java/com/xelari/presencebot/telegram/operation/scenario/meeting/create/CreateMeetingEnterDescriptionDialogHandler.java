@@ -32,7 +32,7 @@ public class CreateMeetingEnterDescriptionDialogHandler implements DialogHandler
                 Constants.ENTER_MEETING_DESCRIPTION_MESSAGE
         );
 
-        dialogDataCache.put(
+        dialogDataCache.putData(
                 chatId,
                 request
         );

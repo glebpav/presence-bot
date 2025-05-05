@@ -3,8 +3,8 @@ package com.xelari.presencebot.telegram.operation.callback;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.JsonHandler;
-import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterDescriptionDialogHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterNameCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterRepeatCountCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingSelectTeamCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.team.create.CreateTeamCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.team.invite.InviteMemberGenerateTokenCallbackHandler;
@@ -30,7 +30,8 @@ public class CallbackDispatcher {
             @Autowired InviteMemberGenerateTokenCallbackHandler inviteMemberGenerateTokenCallbackHandler,
             @Autowired JoinTeamCallbackHandler enterTeamCallbackHandler,
             @Autowired CreateMeetingEnterNameCallbackHandler createMeetingEnterNameCallbackHandler,
-            @Autowired CreateMeetingSelectTeamCallbackHandler createMeetingSelectTeamCallbackHandler
+            @Autowired CreateMeetingSelectTeamCallbackHandler createMeetingSelectTeamCallbackHandler,
+            @Autowired CreateMeetingEnterRepeatCountCallbackHandler createMeetingEnterRepeatCountCallbackHandler
             ) {
 
         this.callbacks = Map.of(
@@ -40,7 +41,8 @@ public class CallbackDispatcher {
                 CallbackType.INVITE_MEMBER_GENERATE_TOKEN, inviteMemberGenerateTokenCallbackHandler,
                 CallbackType.ENTER_TEAM, enterTeamCallbackHandler,
                 CallbackType.CREATE_MEETING_SELECT_TEAM, createMeetingSelectTeamCallbackHandler,
-                CallbackType.CREATE_MEETING_TEAM_SELECTED, createMeetingEnterNameCallbackHandler
+                CallbackType.CREATE_MEETING_TEAM_SELECTED, createMeetingEnterNameCallbackHandler,
+                CallbackType.CREATE_MEETING_REPEAT_SELECTED, createMeetingEnterRepeatCountCallbackHandler
         );
 
     }

@@ -13,42 +13,28 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.UUID;
-
 @Component
 @RequiredArgsConstructor
-public class CreateMeetingEnterNameCallbackHandler implements CallbackHandler {
+public class CreateMeetingEnterRepeatCountCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;
-    private final DialogDataCache dialogDataCache;
     private final DialogDispatcher dialogDispatcher;
+    private final DialogDataCache dialogDataCache;
 
-    private final CreateMeetingEnterDescriptionDialogHandler enterDescriptionCallbackHandler;
+    private final CreateMeetingFinalDialogHandler createMeetingFinalDialogHandler;
 
     @Override
-    public SendMessage apply(Callback callback, Update update) throws JsonProcessingException {
+    public SendMessage apply(Callback callback, Update update) {
 
         var chatId = update.getCallbackQuery().getMessage().getChatId();
-        var teamId = callbackDataCache.getData(callback, UUID.class);
+        var request = callbackDataCache.getData(callback, CreateMeetingRequest.class);
 
-        SendMessage message = new SendMessage(
-                chatId.toString(), Constants.ENTER_MEETING_NAME_MESSAGE
+        dialogDataCache.putData(chatId, request);
+        dialogDispatcher.putHandler(chatId, createMeetingFinalDialogHandler);
+
+        return new SendMessage(
+                String.valueOf(chatId),
+                Constants.ENTER_MEETING_REPEAT_COUNT_MESSAGE
         );
-
-        var createMeetingRequest = new CreateMeetingRequest(
-                teamId, null, null, null, null, 0, 0
-        );
-
-        dialogDataCache.putData(
-                chatId,
-                createMeetingRequest
-        );
-
-        dialogDispatcher.putHandler(
-                chatId,
-                enterDescriptionCallbackHandler
-        );
-
-        return message;
     }
 }

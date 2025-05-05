@@ -20,43 +20,38 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class CreateMeetingSetRepetitionDialogHandler implements DialogHandler {
+public class CreateMeetingEnterRepetitionDialogHandler implements DialogHandler {
 
     private final ButtonBuilder buttonBuilder;
     private final DialogDataCache dialogDataCache;
 
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
-
     @Override
     public SendMessage apply(Update update, long chatId) {
 
-        System.out.println("in repetition dialog");
+        var request = dialogDataCache.getData(chatId, CreateMeetingRequest.class);
 
-        var data = dialogDataCache.getData(chatId, CreateMeetingRequest.class);
-
-        if (data == null || data.teamId() == null) {
+        if (request == null || request.teamId() == null) {
             throw new RuntimeException("Data should be set");
         }
 
         var message = new SendMessage();
         message.setChatId(chatId);
 
-        var text = update.getMessage().getText();
+        var durationMinutesString = update.getMessage().getText();
 
-        if (text == null || text.trim().isEmpty()) {
-            message.setText(Constants.INCORRECT_TIME_FORMAT_MESSAGE);
-        } else {
-            try {
-                LocalDateTime time = LocalDateTime.parse(
-                        text.trim(),
-                        dateTimeFormatter
-                );
-                data = data.withTime(time);
-                message.setText(Constants.SELECT_MEETING_REPETITIONS_MESSAGE);
-                addKeyboard(message, data);
-            } catch (DateTimeParseException e) {
-                message.setText(Constants.INCORRECT_TIME_FORMAT_MESSAGE);
-            }
+        if (durationMinutesString == null || durationMinutesString.isBlank()) {
+            message.setText(Constants.CANT_UNDERSTAND);
+            return message;
+        }
+
+        try {
+            var durationMinutes = Integer.parseInt(durationMinutesString);
+            request = request.withDurationMinutes(durationMinutes);
+            message.setText(Constants.SELECT_MEETING_REPETITIONS_MESSAGE);
+            addKeyboard(message, request);
+        } catch (NumberFormatException e) {
+            message.setText(Constants.CANT_UNDERSTAND);
+            return message;
         }
 
         return message;
@@ -66,20 +61,20 @@ public class CreateMeetingSetRepetitionDialogHandler implements DialogHandler {
 
         List<ButtonDescription> buttonsDescription = List.of(
                 new ButtonDescription(MeetingRepeat.NONE.getDescription(),
-                        CallbackType.CREATE_MEETING_REPEAT_NONE,
-                        data
+                        CallbackType.CREATE_MEETING_REPEAT_SELECTED,
+                        data.withMeetingRepeat(MeetingRepeat.NONE)
                 ),
                 new ButtonDescription(MeetingRepeat.EVERY_DAY.getDescription(),
-                        CallbackType.CREATE_MEETING_REPEAT_EVERY_DAY,
-                        data
+                        CallbackType.CREATE_MEETING_REPEAT_SELECTED,
+                        data.withMeetingRepeat(MeetingRepeat.EVERY_DAY)
                 ),
                 new ButtonDescription(MeetingRepeat.EVERY_MONTH.getDescription(),
-                        CallbackType.CREATE_MEETING_REPEAT_EVERY_MONTH,
-                        data
+                        CallbackType.CREATE_MEETING_REPEAT_SELECTED,
+                        data.withMeetingRepeat(MeetingRepeat.EVERY_MONTH)
                 ),
                 new ButtonDescription(MeetingRepeat.EVERY_WEEK.getDescription(),
-                        CallbackType.CREATE_MEETING_REPEAT_EVERY_WEEK,
-                        data
+                        CallbackType.CREATE_MEETING_REPEAT_SELECTED,
+                        data.withMeetingRepeat(MeetingRepeat.EVERY_WEEK)
                 )
         );
 

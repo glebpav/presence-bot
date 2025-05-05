@@ -17,7 +17,7 @@ public class DialogDataCache {
         mapper.registerModule(new JavaTimeModule());
     }
 
-    public void put(long chatId, Object data) {
+    public void putData(long chatId, Object data) {
         cache.put(chatId, data);
     }
 

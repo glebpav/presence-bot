@@ -53,6 +53,9 @@ public class Constants {
     public static String ENTER_MEETING_NAME_MESSAGE = "Please, enter meeting name";
     public static String SHOULD_I_ADD_DESCRIPTION_MESSAGE = "Should we add description?";
     public static String ENTER_MEETING_DESCRIPTION_MESSAGE = "Please, enter meeting description";
+    public static String ENTER_MEETING_REPEAT_COUNT_MESSAGE = "Please, enter repeat count";
+    public static String MEETING_CREATED_SUCCESSFULLY_MESSAGE = "Meeting(s) was(were) created successfully!";
+    public static String ENTER_MEETING_DURATION_MESSAGE = "Please, enter meeting duration";
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")
