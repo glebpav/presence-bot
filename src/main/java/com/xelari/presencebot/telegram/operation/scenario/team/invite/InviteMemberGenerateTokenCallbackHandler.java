@@ -12,8 +12,6 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.time.format.DateTimeFormatter;
-
 @Component
 @RequiredArgsConstructor
 public class InviteMemberGenerateTokenCallbackHandler implements CallbackHandler {
@@ -31,16 +29,7 @@ public class InviteMemberGenerateTokenCallbackHandler implements CallbackHandler
 
         SendMessage sendMessage = new SendMessage(
                 chatId,
-                "<b>🎟️ Invitation Token Created 🎟️</b>\n\n" +
-                        Constants.INVITATION_TOKEN_CREATED_MESSAGE + "\n\n" +
-                        "⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺\n" +
-                        "<b>🔑 Token:</b> <code>" + token + "</code>\n" +
-                        "<b>👥 Role:</b> " + createTeamTokenRequest.role() + "\n" +
-                        "<b>⏳ Expires:</b> " +
-                        createTeamTokenRequest.expireAt()
-                                .format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm")) + "\n" +
-                        "⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺\n\n" +
-                        "<i>Share this token securely!</i>"
+                Constants.SUCCESSFUL_CREATE_INITIATION_TOKEN_MESSAGE(token)
         );
 
         sendMessage.enableHtml(true);

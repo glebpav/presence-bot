@@ -19,9 +19,7 @@ public class InvitationToken extends AbstractEntity {
     @Column(nullable = false, unique = true, name = "token")
     private String token;
 
-    @ManyToOne(
-            fetch = FetchType.LAZY
-    )
+    @ManyToOne()
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 

@@ -1,6 +1,9 @@
 package com.xelari.presencebot.telegram;
 
+import com.xelari.presencebot.domain.entity.InvitationToken;
 import com.xelari.presencebot.domain.entity.team.Team;
+
+import java.time.format.DateTimeFormatter;
 
 public class Constants {
 
@@ -32,6 +35,19 @@ public class Constants {
     public static final String TOKEN_NOT_EXISTS_MESSAGE = "Your invitation token does not exist!";
     public static final String ALREADY_IN_TEAM_MESSAGE = "You are already in this team!";
     public static final String TOKEN_EXPIRED_MESSAGE = "Your invitation token has expired!";
+
+    public static String SUCCESSFUL_CREATE_INITIATION_TOKEN_MESSAGE(InvitationToken token) {
+        return "<b>🎟️ Invitation Token Created 🎟️</b>\n\n" +
+                Constants.INVITATION_TOKEN_CREATED_MESSAGE + "\n\n" +
+                "⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺\n" +
+                "<b>🔑 Token:</b> <code>" + token.getToken() + "</code>\n" +
+                "<b>👥 Role:</b> " + token.getAssignedRole() + "\n" +
+                "<b>⏳ Expires:</b> " +
+                token.getExpiresAt()
+                        .format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm")) + "\n" +
+                "⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺\n\n" +
+                "<i>Share this token securely!</i>";
+    }
 
     public static String SUCCESSFUL_JOINED_TEAM_MESSAGE(Team team) {
         return String.format("""

@@ -17,7 +17,7 @@ public class GenerateInviteTokenUseCase {
     private final InvitationTokenRepository tokenRepository;
     private final TeamRepository teamRepository;
 
-    public String execute(CreateTeamTokenRequest createTeamTokenRequest) {
+    public InvitationToken execute(CreateTeamTokenRequest createTeamTokenRequest) {
 
         var team = teamRepository
                 .findById(createTeamTokenRequest.teamId())
@@ -32,7 +32,7 @@ public class GenerateInviteTokenUseCase {
 
         tokenRepository.save(token);
 
-        return token.getToken();
+        return token;
     }
 
 }
