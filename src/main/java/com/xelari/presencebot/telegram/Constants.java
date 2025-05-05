@@ -47,15 +47,14 @@ public class Constants {
         );
     }
 
-    public static String INPUT_MEETING_TIME_MESSAGE = "Please, enter meeting time";
-    public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
-    public static String SELECT_MEETING_REPETITIONS_MESSAGE = "Select repetitions:";
     public static String ENTER_MEETING_NAME_MESSAGE = "Please, enter meeting name";
-    public static String SHOULD_I_ADD_DESCRIPTION_MESSAGE = "Should we add description?";
+    public static String INPUT_MEETING_TIME_MESSAGE = "Please, enter meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
+    public static String ENTER_MEETING_DURATION_MESSAGE = "Please, enter meeting duration (in minutes)";
     public static String ENTER_MEETING_DESCRIPTION_MESSAGE = "Please, enter meeting description";
     public static String ENTER_MEETING_REPEAT_COUNT_MESSAGE = "Please, enter repeat count";
+    public static String SELECT_MEETING_REPETITIONS_MESSAGE = "Please, enter count of repetitions:";
     public static String MEETING_CREATED_SUCCESSFULLY_MESSAGE = "Meeting(s) was(were) created successfully!";
-    public static String ENTER_MEETING_DURATION_MESSAGE = "Please, enter meeting duration";
+    public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")

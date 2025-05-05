@@ -18,8 +18,6 @@ public class CreateMeetingFinalDialogHandler implements DialogHandler {
     private final DialogDataCache dialogDataCache;
     private final CreateMeetingUseCase createMeetingUseCase;
 
-
-
     @Override
     public SendMessage apply(Update update, long chatId) {
 

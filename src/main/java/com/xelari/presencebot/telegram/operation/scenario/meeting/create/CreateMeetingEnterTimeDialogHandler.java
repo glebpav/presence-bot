@@ -35,10 +35,12 @@ public class CreateMeetingEnterTimeDialogHandler implements DialogHandler {
         dialogDataCache.putData(chatId, data);
         dialogDispatcher.putHandler(chatId, createMeetingEnterDurationDialogHandler);
 
-        return new SendMessage(
-                String.valueOf(chatId),
-                Constants.INPUT_MEETING_TIME_MESSAGE
-        );
+        var message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText(Constants.INPUT_MEETING_TIME_MESSAGE);
+        message.enableHtml(true);
+
+        return message;
     }
 
 }

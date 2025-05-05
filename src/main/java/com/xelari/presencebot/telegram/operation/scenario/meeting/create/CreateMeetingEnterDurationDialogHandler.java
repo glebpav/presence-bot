@@ -48,6 +48,7 @@ public class CreateMeetingEnterDurationDialogHandler implements DialogHandler {
             message.setText(Constants.ENTER_MEETING_DURATION_MESSAGE);
         } catch (DateTimeParseException e) {
             message.setText(Constants.INCORRECT_TIME_FORMAT_MESSAGE);
+            return message;
         }
 
         dialogDataCache.putData(chatId, request);

@@ -2,6 +2,9 @@ package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
+import com.xelari.presencebot.application.exception.TeamNotFoundException;
+import com.xelari.presencebot.application.usecase.meeting.CreateMeetingUseCase;
+import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
 import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
@@ -22,19 +25,32 @@ public class CreateMeetingEnterRepeatCountCallbackHandler implements CallbackHan
     private final DialogDataCache dialogDataCache;
 
     private final CreateMeetingFinalDialogHandler createMeetingFinalDialogHandler;
+    private final CreateMeetingUseCase createMeetingUseCase;
 
     @Override
     public SendMessage apply(Callback callback, Update update) {
 
         var chatId = update.getCallbackQuery().getMessage().getChatId();
         var request = callbackDataCache.getData(callback, CreateMeetingRequest.class);
+        var message = new SendMessage();
+        message.setChatId(chatId);
+
+        if (request.meetingRepeat() == MeetingRepeat.NONE) {
+
+            try {
+                createMeetingUseCase.execute(request);
+                message.setText(Constants.MEETING_CREATED_SUCCESSFULLY_MESSAGE);
+            } catch (TeamNotFoundException e) {
+                message.setText(e.getMessage());
+            }
+            return message;
+
+        }
 
         dialogDataCache.putData(chatId, request);
         dialogDispatcher.putHandler(chatId, createMeetingFinalDialogHandler);
 
-        return new SendMessage(
-                String.valueOf(chatId),
-                Constants.ENTER_MEETING_REPEAT_COUNT_MESSAGE
-        );
+        message.setText(Constants.ENTER_MEETING_REPEAT_COUNT_MESSAGE);
+        return message;
     }
 }
