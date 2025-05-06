@@ -2,7 +2,6 @@ package com.xelari.presencebot.domain.entity.meeting;
 
 import com.xelari.presencebot.domain.entity.AbstractEntity;
 import com.xelari.presencebot.domain.entity.Attendance;
-import com.xelari.presencebot.domain.entity.User;
 import com.xelari.presencebot.domain.entity.team.Team;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,6 +20,15 @@ public class Meeting extends AbstractEntity {
 
     // TODO: add name and description
 
+    @Column(
+            name = "name",
+            nullable = false
+    )
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "shceduled_time")
     private LocalDateTime scheduledTime;
 
@@ -28,7 +36,10 @@ public class Meeting extends AbstractEntity {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @OneToMany(mappedBy = "meeting", cascade = CascadeType.ALL)
+    @OneToMany(
+            mappedBy = "meeting",
+            cascade = CascadeType.ALL
+    )
     private Set<Attendance> attendances;
 
     @Column(name = "duration_minutes")
@@ -36,7 +47,7 @@ public class Meeting extends AbstractEntity {
 
     @Override
     public String toString() {
-        return "Time: %s; duration: %d".formatted(scheduledTime.toString(), durationMinutes);
+        return "Name: %s\nTime: %s\nduration: %d".formatted(name, scheduledTime.toString(), durationMinutes);
     }
 
 }

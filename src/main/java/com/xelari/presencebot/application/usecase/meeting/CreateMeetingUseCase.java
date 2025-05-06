@@ -44,8 +44,10 @@ public class CreateMeetingUseCase {
         LocalDateTime nextMeetingTime = request.time();
 
         for (int i = 0; i < request.repeatCount(); i++) {
+            System.out.println("Meeting name: " + request.name());
             Meeting meeting = createSingleMeeting(
-
+                    request.name(),
+                    request.description(),
                     team,
                     nextMeetingTime,
                     request.durationMinutes()
@@ -58,9 +60,17 @@ public class CreateMeetingUseCase {
         return meetingRepository.saveAll(meetings);
     }
 
-    private Meeting createSingleMeeting(Team team, LocalDateTime schedulesTime, int durationMinutes) {
+    private Meeting createSingleMeeting(
+            String name,
+            String description,
+            Team team,
+            LocalDateTime schedulesTime,
+            int durationMinutes
+    ) {
 
         var meeting = Meeting.builder()
+                .name(name)
+                .description(description)
                 .team(team)
                 .scheduledTime(schedulesTime)
                 .durationMinutes(durationMinutes)

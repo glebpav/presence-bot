@@ -23,20 +23,22 @@ public class CreateMeetingEnterTimeDialogHandler implements DialogHandler {
     @Override
     public SendMessage apply(Update update, long chatId) {
 
-        var data = dialogDataCache.getData(chatId, CreateMeetingRequest.class);
+        var request = dialogDataCache.getData(chatId, CreateMeetingRequest.class);
         var meetingDescription = update.getMessage().getText();
-
-        if (meetingDescription == null || meetingDescription.isBlank()) {
-            throw new InputCantBeEmpty();
-        }
-
-        data = data.withDescription(meetingDescription);
-
-        dialogDataCache.putData(chatId, data);
-        dialogDispatcher.putHandler(chatId, createMeetingEnterDurationDialogHandler);
 
         var message = new SendMessage();
         message.setChatId(chatId);
+
+        if (meetingDescription == null || meetingDescription.isBlank()) {
+            message.setText(Constants.INPUT_CANT_BE_BLANK_MESSAGE);
+            return message;
+        }
+
+        request = request.withDescription(meetingDescription);
+
+        dialogDataCache.putData(chatId, request);
+        dialogDispatcher.putHandler(chatId, createMeetingEnterDurationDialogHandler);
+
         message.setText(Constants.INPUT_MEETING_TIME_MESSAGE);
         message.enableHtml(true);
 

@@ -22,16 +22,25 @@ public class CreateMeetingEnterDescriptionDialogHandler implements DialogHandler
     @Override
     public SendMessage apply(Update update, long chatId) {
 
+        var meetingName = update.getMessage().getText();
+
         var request = dialogDataCache.getData(
                 chatId,
                 CreateMeetingRequest.class
         );
 
-        var message = new SendMessage(
-                String.valueOf(chatId),
-                Constants.ENTER_MEETING_DESCRIPTION_MESSAGE
-        );
+        var message = new SendMessage();
+        message.setChatId(chatId);
 
+
+        if (meetingName == null || meetingName.isBlank()) {
+            message.setText(Constants.INPUT_CANT_BE_BLANK_MESSAGE);
+            return message;
+        }
+
+        request = request.withName(meetingName.trim());
+        message.setText(Constants.ENTER_MEETING_DESCRIPTION_MESSAGE);
+        
         dialogDataCache.putData(
                 chatId,
                 request
