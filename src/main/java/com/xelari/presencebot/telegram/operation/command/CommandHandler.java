@@ -5,4 +5,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public interface CommandHandler {
     SendMessage apply(Update update);
+
+    default long getChatId(Update update) {
+        return update.getMessage().getChatId();
+    }
 }

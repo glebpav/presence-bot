@@ -1,5 +1,7 @@
-package com.xelari.presencebot.domain.entity;
+package com.xelari.presencebot.domain.entity.attendance;
 
+import com.xelari.presencebot.domain.entity.AbstractEntity;
+import com.xelari.presencebot.domain.entity.User;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import jakarta.persistence.*;
 import lombok.Data;

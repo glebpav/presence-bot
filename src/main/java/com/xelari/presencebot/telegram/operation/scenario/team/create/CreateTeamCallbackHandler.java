@@ -19,10 +19,10 @@ public class CreateTeamCallbackHandler implements CallbackHandler {
     @Override
     public SendMessage apply(Callback callback, Update update) {
 
-        var chatId = update.getCallbackQuery().getMessage().getChatId();
+        var chatId = getChatId(update);
 
         var message = new SendMessage(
-                update.getCallbackQuery().getMessage().getChatId().toString(),
+                chatId.toString(),
                 Constants.ENTER_TEAM_NAME_MESSAGE
         );
 

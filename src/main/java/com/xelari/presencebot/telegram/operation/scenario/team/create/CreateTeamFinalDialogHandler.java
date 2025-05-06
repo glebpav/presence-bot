@@ -27,7 +27,7 @@ public class CreateTeamFinalDialogHandler implements DialogHandler {
     public SendMessage apply(Update update, long chatId) {
 
         var teamName = update.getMessage().getText();
-        var userId = UuidHandler.longToUUID(update.getMessage().getFrom().getId());
+        var userId = getUserId(update);
 
         var message = new SendMessage();
         message.setChatId(chatId);

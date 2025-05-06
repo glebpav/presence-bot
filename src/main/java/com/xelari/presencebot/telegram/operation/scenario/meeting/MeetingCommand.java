@@ -20,9 +20,13 @@ public class MeetingCommand implements CommandHandler {
 
     @Override
     public SendMessage apply(Update update) {
-        SendMessage message = new SendMessage();
-        message.setChatId(update.getMessage().getChatId());
-        message.setText(Constants.SELECT_OPTION_MESSAGE);
+
+        var chatId = getChatId(update);
+
+        var message = new SendMessage(
+                String.valueOf(chatId),
+                Constants.SELECT_OPTION_MESSAGE
+        );
 
         addKeyboard(message);
 

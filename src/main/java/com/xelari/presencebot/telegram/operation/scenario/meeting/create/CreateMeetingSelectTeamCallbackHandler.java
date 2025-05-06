@@ -26,13 +26,14 @@ public class CreateMeetingSelectTeamCallbackHandler implements CallbackHandler {
     @Override
     public SendMessage apply(Callback callback, Update update) {
 
-        var userId = UuidHandler.longToUUID(update.getCallbackQuery().getFrom().getId());
+        var userId = getUserId(update);
+        var chatId = getChatId(update);
 
-        SendMessage message = new SendMessage();
-        message.setChatId(update.getCallbackQuery().getMessage().getChatId());
+        var message = new SendMessage();
+        message.setChatId(chatId);
 
         try {
-            List<Team> managingTeams = findManagingTeamsUseCase.execute(userId);
+            var managingTeams = findManagingTeamsUseCase.execute(userId);
 
             if (managingTeams.isEmpty()) {
                 message.setText(Constants.USER_HAVE_NOT_MANAGING_TEAMS_MESSAGE);

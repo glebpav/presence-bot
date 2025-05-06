@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class GetAllMeetingsForUserUseCase {
+public class FindAllMeetingsForUserUseCase {
 
     private final UserRepository userRepository;
     private final MeetingRepository meetingRepository;

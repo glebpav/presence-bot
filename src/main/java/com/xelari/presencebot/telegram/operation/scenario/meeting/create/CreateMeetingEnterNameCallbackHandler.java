@@ -28,7 +28,7 @@ public class CreateMeetingEnterNameCallbackHandler implements CallbackHandler {
     @Override
     public SendMessage apply(Callback callback, Update update) throws JsonProcessingException {
 
-        var chatId = update.getCallbackQuery().getMessage().getChatId();
+        var chatId = getChatId(update);
         var teamId = callbackDataCache.getData(callback, UUID.class);
 
         SendMessage message = new SendMessage(

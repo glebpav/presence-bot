@@ -9,6 +9,7 @@ import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.jdbc.Expectation;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -39,7 +40,13 @@ public class CreateMeetingUseCase {
         List<Meeting> meetings = new ArrayList<>();
         LocalDateTime nextMeetingTime = request.time();
 
-        for (int i = 0; i < request.repeatCount(); i++) {
+        var repeatCount = request.repeatCount();
+
+        if (request.meetingRepeat() == MeetingRepeat.NONE) {
+            repeatCount = 1;
+        }
+
+        for (int i = 0; i < repeatCount; i++) {
             System.out.println("Meeting name: " + request.name());
             Meeting meeting = createSingleMeeting(
                     request.name(),

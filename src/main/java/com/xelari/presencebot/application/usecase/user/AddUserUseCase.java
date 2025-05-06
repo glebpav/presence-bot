@@ -1,4 +1,4 @@
-package com.xelari.presencebot.application.usecase;
+package com.xelari.presencebot.application.usecase.user;
 
 import com.xelari.presencebot.application.dto.user.UserCreationRequest;
 import com.xelari.presencebot.application.exception.user.UserAlreadyExistsException;

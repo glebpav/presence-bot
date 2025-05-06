@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram;
 
-import com.xelari.presencebot.domain.entity.InvitationToken;
+import com.xelari.presencebot.domain.entity.token.InvitationToken;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import com.xelari.presencebot.domain.entity.team.Team;
 

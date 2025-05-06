@@ -12,11 +12,14 @@ public class HealthCommand implements CommandHandler {
 
     @Override
     public SendMessage apply(Update update) {
-        long chatId = update.getMessage().getChatId();
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(String.valueOf(chatId));
-        sendMessage.setText(Constants.HEALTH_MESSAGE);
-        return sendMessage;
+
+        var chatId = getChatId(update);
+
+        return new SendMessage(
+                String.valueOf(chatId),
+                Constants.HEALTH_MESSAGE
+        );
+
     }
 
 }

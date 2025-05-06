@@ -29,7 +29,7 @@ public class CreateMeetingEnterRepeatCountCallbackHandler implements CallbackHan
     @Override
     public SendMessage apply(Callback callback, Update update) {
 
-        var chatId = update.getCallbackQuery().getMessage().getChatId();
+        var chatId = getChatId(update);
         var request = callbackDataCache.getData(callback, CreateMeetingRequest.class);
         var message = new SendMessage();
         message.setChatId(chatId);

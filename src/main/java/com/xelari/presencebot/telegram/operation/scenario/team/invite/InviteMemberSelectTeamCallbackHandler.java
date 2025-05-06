@@ -5,7 +5,6 @@ import com.xelari.presencebot.application.usecase.team.FindManagingTeamsUseCase;
 import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.JsonHandler;
-import com.xelari.presencebot.telegram.UuidHandler;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
 import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
 import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
@@ -30,13 +29,14 @@ public class InviteMemberSelectTeamCallbackHandler implements CallbackHandler {
     @Override
     public SendMessage apply(Callback callback, Update update) {
 
-        var userId = UuidHandler.longToUUID(update.getCallbackQuery().getFrom().getId());
+        var userId = getUserId(update);
+        var chatId = getChatId(update);
 
-        SendMessage message = new SendMessage();
-        message.setChatId(update.getCallbackQuery().getMessage().getChatId());
+        var message = new SendMessage();
+        message.setChatId(chatId);
 
         try {
-            List<Team> managingTeams = findManagingTeamsUseCase.execute(userId);
+            var managingTeams = findManagingTeamsUseCase.execute(userId);
 
             if (managingTeams.isEmpty()) {
                 message.setText(Constants.USER_HAVE_NOT_MANAGING_TEAMS_MESSAGE);

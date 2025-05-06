@@ -1,6 +1,6 @@
 package com.xelari.presencebot.application.persistence;
 
-import com.xelari.presencebot.domain.entity.InvitationToken;
+import com.xelari.presencebot.domain.entity.token.InvitationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

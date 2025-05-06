@@ -21,7 +21,7 @@ public class CreateMeetingFinalDialogHandler implements DialogHandler {
     @Override
     public SendMessage apply(Update update, long chatId) {
 
-        SendMessage message = new SendMessage();
+        var message = new SendMessage();
         message.setChatId(chatId);
 
         var inputText = update.getMessage().getText();
