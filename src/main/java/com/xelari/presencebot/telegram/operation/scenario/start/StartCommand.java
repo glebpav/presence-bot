@@ -1,7 +1,7 @@
 package com.xelari.presencebot.telegram.operation.scenario.start;
 
 import com.xelari.presencebot.application.dto.user.UserCreationRequest;
-import com.xelari.presencebot.application.exception.UserAlreadyExistsException;
+import com.xelari.presencebot.application.exception.user.UserAlreadyExistsException;
 import com.xelari.presencebot.application.usecase.AddUserUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.UuidHandler;

@@ -1,5 +1,6 @@
 package com.xelari.presencebot.application.usecase.team;
 
+import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.persistence.TeamRepository;
 import com.xelari.presencebot.application.persistence.UserRepository;
@@ -12,10 +13,10 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class FindManagingTeamsUseCase {
+public class FindBelongedTeamsUseCase {
 
-    private final TeamRepository repository;
     private final UserRepository userRepository;
+    private final TeamRepository teamRepository;
 
     public List<Team> execute(UUID userId) {
 
@@ -23,7 +24,13 @@ public class FindManagingTeamsUseCase {
                 .findById(userId)
                 .orElseThrow(UserNotFoundException::new);
 
-        return repository.findAllTeamsManagedByUser(userId);
+        var teams = teamRepository.findAllTeamsByUser(userId);
+
+        if (teams.isEmpty()) {
+            throw new TeamNotFoundException("User doesn't belong to any team");
+        }
+
+        return teams;
     }
 
 }

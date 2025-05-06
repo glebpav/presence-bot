@@ -1,6 +1,6 @@
 package com.xelari.presencebot.application.usecase;
 
-import com.xelari.presencebot.application.exception.UserNotFoundException;
+import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

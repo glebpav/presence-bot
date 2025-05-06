@@ -1,13 +1,9 @@
 package com.xelari.presencebot.application.usecase.meeting;
 
 import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
-import com.xelari.presencebot.application.exception.TeamNotFoundException;
-import com.xelari.presencebot.application.persistence.AttendanceRepository;
+import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.persistence.MeetingRepository;
 import com.xelari.presencebot.application.persistence.TeamRepository;
-import com.xelari.presencebot.application.persistence.UserRepository;
-import com.xelari.presencebot.domain.entity.Attendance;
-import com.xelari.presencebot.domain.entity.User;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;

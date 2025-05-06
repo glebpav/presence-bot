@@ -1,12 +1,11 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
-import com.xelari.presencebot.application.exception.UserNotFoundException;
+import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.usecase.team.FindManagingTeamsUseCase;
 import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.UuidHandler;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
 import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
 import com.xelari.presencebot.telegram.operation.callback.CallbackType;
 import com.xelari.presencebot.telegram.ui.ButtonBuilder;

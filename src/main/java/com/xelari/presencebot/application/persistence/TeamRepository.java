@@ -13,10 +13,23 @@ public interface TeamRepository extends JpaRepository<Team, UUID> {
 
     Optional<Team> findByName(String name);
 
-    @Query("SELECT DISTINCT t FROM Team t " +
-            "JOIN t.members m " +
-            "WHERE m.role = 'MANAGER' " +
-            "AND m.user.id = :userId")
+    @Query(
+            """
+            SELECT DISTINCT t FROM Team t
+            JOIN t.members m
+            WHERE m.role = 'MANAGER'
+            AND m.user.id = :userId
+            """
+    )
     List<Team> findAllTeamsManagedByUser(@Param("userId") UUID userId);
+
+    @Query(
+            """
+            SELECT DISTINCT t FROM Team t
+            JOIN t.members m
+            WHERE m.user.id = :userId
+            """
+    )
+    List<Team> findAllTeamsByUser(@Param("userId") UUID userId);
 
 }

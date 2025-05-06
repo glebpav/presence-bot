@@ -11,4 +11,6 @@ public interface MeetingRepository extends JpaRepository<Meeting, UUID> {
 
     List<Meeting> findByTeamIdIn(Set<UUID> teamIds);
 
+    List<Meeting> findByTeamId(UUID teamId);
+
 }

@@ -1,8 +1,7 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
-import com.xelari.presencebot.application.exception.TeamNotFoundException;
+import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.CreateMeetingUseCase;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import com.xelari.presencebot.telegram.Constants;

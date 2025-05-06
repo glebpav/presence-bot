@@ -1,8 +1,8 @@
 package com.xelari.presencebot.application.usecase.team;
 
 import com.xelari.presencebot.application.dto.team.CreateTeamRequest;
-import com.xelari.presencebot.application.exception.TeamAlreadyExistsException;
-import com.xelari.presencebot.application.exception.UserNotFoundException;
+import com.xelari.presencebot.application.exception.team.TeamAlreadyExistsException;
+import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.persistence.TeamRepository;
 import com.xelari.presencebot.application.persistence.UserRepository;
 import com.xelari.presencebot.domain.entity.team.Team;

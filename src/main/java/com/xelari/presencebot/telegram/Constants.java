@@ -26,6 +26,7 @@ public class Constants {
     public static final String SUCCESSFULLY_ADDED_MESSAGE = "Successfully register you!";
     public static final String USER_ALREADY_EXISTS_MESSAGE = "It seamed that you are already registered";
     public static final String USER_NOT_FOUND_MESSAGE = "It seamed that you are not registered!";
+    public static final String NO_BELONG_TEAM_MESSAGE = "It seamed that you doesn't belong to any team!";
     public static final String USER_HAVE_NOT_MANAGING_TEAMS_MESSAGE = "It seems that you haven't managed teams!";
     public static final String SELECT_TEAM_MESSAGE = "Select team:";
     public static final String SELECT_ROLE_MESSAGE = "Select role:";

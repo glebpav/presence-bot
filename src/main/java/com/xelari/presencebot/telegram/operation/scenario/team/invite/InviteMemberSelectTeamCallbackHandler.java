@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram.operation.scenario.team.invite;
 
-import com.xelari.presencebot.application.exception.UserNotFoundException;
+import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.usecase.team.FindManagingTeamsUseCase;
 import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.telegram.Constants;

@@ -1,7 +1,7 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
 import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
-import com.xelari.presencebot.application.exception.TeamNotFoundException;
+import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.CreateMeetingUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;

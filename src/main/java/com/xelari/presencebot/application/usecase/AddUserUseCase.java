@@ -1,7 +1,7 @@
 package com.xelari.presencebot.application.usecase;
 
 import com.xelari.presencebot.application.dto.user.UserCreationRequest;
-import com.xelari.presencebot.application.exception.UserAlreadyExistsException;
+import com.xelari.presencebot.application.exception.user.UserAlreadyExistsException;
 import com.xelari.presencebot.application.persistence.UserRepository;
 import com.xelari.presencebot.domain.entity.User;
 import lombok.AllArgsConstructor;
