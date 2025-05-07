@@ -7,6 +7,7 @@ import com.xelari.presencebot.application.persistence.MeetingRepository;
 import com.xelari.presencebot.application.persistence.TeamMemberRepository;
 import com.xelari.presencebot.application.persistence.UserRepository;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
+import com.xelari.presencebot.domain.entity.team.TeamMember;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @Component
 @Transactional
 @RequiredArgsConstructor
-public class FindAllMeetingsForUserUseCase {
+public class FindAllManagingMeetingsForUserUseCase {
 
     private final UserRepository userRepository;
     private final MeetingRepository meetingRepository;
@@ -33,6 +34,7 @@ public class FindAllMeetingsForUserUseCase {
         var teamMembers = teamMemberRepository
                 .findByUserId(userId)
                 .stream()
+                .filter(teamMember -> teamMember.getRole() == TeamMember.Role.MANAGER)
                 .map(teamMember -> teamMember.getTeam().getId())
                 .collect(Collectors.toSet());
 
@@ -44,6 +46,7 @@ public class FindAllMeetingsForUserUseCase {
         }
 
         return MeetingResponse.fromMeetingList(meetings);
+
     }
 
 }

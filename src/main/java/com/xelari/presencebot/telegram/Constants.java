@@ -1,5 +1,6 @@
 package com.xelari.presencebot.telegram;
 
+import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.domain.entity.token.InvitationToken;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import com.xelari.presencebot.domain.entity.team.Team;
@@ -77,9 +78,13 @@ public class Constants {
     public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
 
     public static String SELECT_MEETING_SHOW_TYPE_MESSAGE = "Please, select to show meeting for appropriate team or all your meetings";
+    public static String SELECT_TEAM_FOR_MEETING_MESSAGE = "Please, select team witch meeting you want to edit";
     public static String NO_MEETING_WAS_FOUND_MESSAGE = "No meeting was found!";
+    public static String NO_MANAGING_MEETING_WAS_FOUND_MESSAGE = "No managing meeting was found!";
+    public static String NO_MATCHING_MEETING_IN_LIST_MESSAGE = "No matching meeting in list!";
+    public static String MEETING_DELETED_SUCCESSFULLY_MESSAGE = "Meeting was deleted successfully!";
 
-    public static String FOUND_MEETING_MESSAGE(List<Meeting> meetings) {
+    public static String FOUND_MEETING_MESSAGE(List<MeetingResponse> meetings) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < meetings.size(); i++) {
             stringBuilder

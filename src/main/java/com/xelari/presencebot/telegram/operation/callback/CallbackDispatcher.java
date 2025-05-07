@@ -6,6 +6,9 @@ import com.xelari.presencebot.telegram.JsonHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterNameCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterRepeatCountCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingSelectTeamCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.EditMeetingDeleteCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.EditMeetingSelectMeetingCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.EditMeetingSelectTeamCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingAllCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingForTeamCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingSelectTeamCallbackHandler;
@@ -40,8 +43,11 @@ public class CallbackDispatcher {
             @Autowired ShowMeetingSelectTypeCallbackHandler showMeetingSelectTypeCallbackHandler,
             @Autowired ShowMeetingAllCallbackHandler showMeetingAllCallbackHandler,
             @Autowired ShowMeetingSelectTeamCallbackHandler showMeetingSelectTeamCallbackHandler,
-            @Autowired ShowMeetingForTeamCallbackHandler showMeetingForTeamCallbackHandler
-    ) {
+            @Autowired ShowMeetingForTeamCallbackHandler showMeetingForTeamCallbackHandler,
+            @Autowired EditMeetingSelectTeamCallbackHandler editMeetingSelectTeamCallbackHandler,
+            @Autowired EditMeetingSelectMeetingCallbackHandler editMeetingSelectMeetingCallbackHandler,
+            @Autowired EditMeetingDeleteCallbackHandler editMeetingDeleteCallbackHandler
+            ) {
 
         callbacks = new HashMap<>();
 
@@ -57,6 +63,9 @@ public class CallbackDispatcher {
         callbacks.put(CallbackType.SHOW_MEETINGS_ALL_MEETINGS, showMeetingAllCallbackHandler);
         callbacks.put(CallbackType.SHOW_MEETINGS_FOR_TEAM, showMeetingSelectTeamCallbackHandler);
         callbacks.put(CallbackType.SHOW_MEETINGS_WITH_SELECTED_TEAM, showMeetingForTeamCallbackHandler);
+        callbacks.put(CallbackType.CHANGE_MEETING, editMeetingSelectTeamCallbackHandler);
+        callbacks.put(CallbackType.CHANGE_MEETING_SELECT_MEETING, editMeetingSelectMeetingCallbackHandler);
+        callbacks.put(CallbackType.CHANGE_MEETING_DELETE, editMeetingDeleteCallbackHandler);
 
     }
 

@@ -1,6 +1,7 @@
 package com.xelari.presencebot.application.usecase.meeting;
 
 import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
+import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.persistence.MeetingRepository;
 import com.xelari.presencebot.application.persistence.TeamRepository;
@@ -28,7 +29,7 @@ public class CreateMeetingUseCase {
     // private final UserRepository userRepository;
     // private final AttendanceRepository attendanceRepository;
 
-    public List<Meeting> execute(CreateMeetingRequest request) {
+    public List<MeetingResponse> execute(CreateMeetingRequest request) {
 
         Team team = teamRepository.findById(request.teamId())
                 .orElseThrow(() -> new TeamNotFoundException("Team not found"));
@@ -36,7 +37,7 @@ public class CreateMeetingUseCase {
         return generateMeetings(request, team);
     }
 
-    private List<Meeting> generateMeetings(CreateMeetingRequest request, Team team) {
+    private List<MeetingResponse> generateMeetings(CreateMeetingRequest request, Team team) {
         List<Meeting> meetings = new ArrayList<>();
         LocalDateTime nextMeetingTime = request.time();
 
@@ -60,7 +61,8 @@ public class CreateMeetingUseCase {
             nextMeetingTime = calculateNextTime(nextMeetingTime, request.meetingRepeat());
         }
 
-        return meetingRepository.saveAll(meetings);
+        meetings = meetingRepository.saveAll(meetings);
+        return MeetingResponse.fromMeetingList(meetings);
     }
 
     private Meeting createSingleMeeting(
