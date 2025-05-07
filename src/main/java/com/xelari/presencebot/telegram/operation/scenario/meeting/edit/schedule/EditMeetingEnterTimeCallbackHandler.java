@@ -1,11 +1,13 @@
-package com.xelari.presencebot.telegram.operation.scenario.meeting.edit;
+package com.xelari.presencebot.telegram.operation.scenario.meeting.edit.schedule;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xelari.presencebot.application.usecase.meeting.DeleteMeetingUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
 import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
 import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
+import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
+import com.xelari.presencebot.telegram.operation.dialog.DialogHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,23 +17,29 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class EditMeetingDeleteCallbackHandler implements CallbackHandler {
+public class EditMeetingEnterTimeCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;
-    private final DeleteMeetingUseCase deleteMeetingUseCase;
+    private final DialogDispatcher dialogDispatcher;
+    private final DialogDataCache dialogDataCache;
+
+    private final EditMeetingChangeTimeDialogHandler editMeetingChangeTimeDialogHandler;
 
     @Override
     public SendMessage apply(Callback callback, Update update) throws JsonProcessingException {
 
-        var chatId = getChatId(update);
         var meetingId = callbackDataCache.getData(callback, UUID.class);
+        var chatId = getChatId(update);
 
         var message = new SendMessage();
         message.setChatId(chatId);
 
-        deleteMeetingUseCase.execute(meetingId);
+        dialogDataCache.putData(chatId, meetingId);
+        dialogDispatcher.putHandler(chatId, editMeetingChangeTimeDialogHandler);
 
-        message.setText(Constants.MEETING_DELETED_SUCCESSFULLY_MESSAGE);
+        message.setText(Constants.INPUT_NEW_MEETING_TIME_MESSAGE);
+        message.enableMarkdown(true);
+
         return message;
     }
 }

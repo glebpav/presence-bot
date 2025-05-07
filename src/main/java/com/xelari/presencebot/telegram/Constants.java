@@ -70,6 +70,7 @@ public class Constants {
 
     public static String ENTER_MEETING_NAME_MESSAGE = "Please, enter meeting name";
     public static String INPUT_MEETING_TIME_MESSAGE = "Please, enter meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
+    public static String INPUT_NEW_MEETING_TIME_MESSAGE = "Please, enter new meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
     public static String ENTER_MEETING_DURATION_MESSAGE = "Please, enter meeting duration (in minutes)";
     public static String ENTER_MEETING_DESCRIPTION_MESSAGE = "Please, enter meeting description";
     public static String ENTER_MEETING_REPEAT_COUNT_MESSAGE = "Please, enter repeat count";
@@ -83,6 +84,7 @@ public class Constants {
     public static String NO_MANAGING_MEETING_WAS_FOUND_MESSAGE = "No managing meeting was found!";
     public static String NO_MATCHING_MEETING_IN_LIST_MESSAGE = "No matching meeting in list!";
     public static String MEETING_DELETED_SUCCESSFULLY_MESSAGE = "Meeting was deleted successfully!";
+    public static String MEETING_TIME_WAS_CHANGED_SUCCESSFULLY_MESSAGE = "Meeting time was changed successfully!";
 
     public static String FOUND_MEETING_MESSAGE(List<MeetingResponse> meetings) {
         StringBuilder stringBuilder = new StringBuilder();

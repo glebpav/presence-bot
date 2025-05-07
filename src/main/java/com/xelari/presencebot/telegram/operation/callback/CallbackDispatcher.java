@@ -6,9 +6,11 @@ import com.xelari.presencebot.telegram.JsonHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterNameCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingEnterRepeatCountCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.create.CreateMeetingSelectTeamCallbackHandler;
-import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.EditMeetingDeleteCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.delete.EditMeetingDeleteCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.EditMeetingSelectMeetingCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.EditMeetingSelectTeamCallbackHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.schedule.EditMeetingChangeTimeDialogHandler;
+import com.xelari.presencebot.telegram.operation.scenario.meeting.edit.schedule.EditMeetingEnterTimeCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingAllCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingForTeamCallbackHandler;
 import com.xelari.presencebot.telegram.operation.scenario.meeting.show.ShowMeetingSelectTeamCallbackHandler;
@@ -46,7 +48,8 @@ public class CallbackDispatcher {
             @Autowired ShowMeetingForTeamCallbackHandler showMeetingForTeamCallbackHandler,
             @Autowired EditMeetingSelectTeamCallbackHandler editMeetingSelectTeamCallbackHandler,
             @Autowired EditMeetingSelectMeetingCallbackHandler editMeetingSelectMeetingCallbackHandler,
-            @Autowired EditMeetingDeleteCallbackHandler editMeetingDeleteCallbackHandler
+            @Autowired EditMeetingDeleteCallbackHandler editMeetingDeleteCallbackHandler,
+            @Autowired EditMeetingEnterTimeCallbackHandler editMeetingEnterTimeCallbackHandler
             ) {
 
         callbacks = new HashMap<>();
@@ -66,6 +69,7 @@ public class CallbackDispatcher {
         callbacks.put(CallbackType.CHANGE_MEETING, editMeetingSelectTeamCallbackHandler);
         callbacks.put(CallbackType.CHANGE_MEETING_SELECT_MEETING, editMeetingSelectMeetingCallbackHandler);
         callbacks.put(CallbackType.CHANGE_MEETING_DELETE, editMeetingDeleteCallbackHandler);
+        callbacks.put(CallbackType.CHANGE_MEETING_CHANGE_TIME, editMeetingEnterTimeCallbackHandler);
 
     }
 
