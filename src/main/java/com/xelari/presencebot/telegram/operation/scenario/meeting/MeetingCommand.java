@@ -3,17 +3,17 @@ package com.xelari.presencebot.telegram.operation.scenario.meeting;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.CallbackType;
 import com.xelari.presencebot.telegram.operation.command.CommandHandler;
+import com.xelari.presencebot.telegram.operation.command.TelegramCommand;
 import com.xelari.presencebot.telegram.ui.ButtonBuilder;
 import com.xelari.presencebot.telegram.ui.ButtonDescription;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCommand("/meeting")
 public class MeetingCommand implements CommandHandler {
 
     private final ButtonBuilder buttonBuilder;

@@ -2,12 +2,12 @@ package com.xelari.presencebot.telegram.operation.scenario.start;
 
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.command.CommandHandler;
-import org.springframework.stereotype.Component;
+import com.xelari.presencebot.telegram.operation.command.TelegramCommand;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 
-@Component
+@TelegramCommand("/health")
 public class HealthCommand implements CommandHandler {
 
     @Override

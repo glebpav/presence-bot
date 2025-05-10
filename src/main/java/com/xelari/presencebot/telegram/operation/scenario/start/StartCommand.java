@@ -6,19 +6,20 @@ import com.xelari.presencebot.application.usecase.user.AddUserUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.UuidHandler;
 import com.xelari.presencebot.telegram.operation.command.CommandHandler;
+import com.xelari.presencebot.telegram.operation.command.TelegramCommand;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCommand("/start")
 public class StartCommand implements CommandHandler {
 
     private final AddUserUseCase addUserUseCase;
 
     @Override
     public SendMessage apply(Update update) {
+
         var userFirstName = update.getMessage().getFrom().getUserName();
         var userLastName = update.getMessage().getFrom().getLastName();
         var chatId = update.getMessage().getChatId();
