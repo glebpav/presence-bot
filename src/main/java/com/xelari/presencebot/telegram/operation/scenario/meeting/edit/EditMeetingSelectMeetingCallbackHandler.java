@@ -7,21 +7,18 @@ import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.FindAllManagingMeetingsForUserUseCase;
 import com.xelari.presencebot.application.usecase.meeting.FindMeetingsForTeamUseCase;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.CHANGE_MEETING_SELECT_MEETING)
 public class EditMeetingSelectMeetingCallbackHandler implements CallbackHandler {
 
     private final FindMeetingsForTeamUseCase findMeetingsForTeamUseCase;

@@ -5,9 +5,7 @@ import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.CreateMeetingUseCase;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +13,8 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.CREATE_MEETING_REPEAT_SELECTED)
 public class CreateMeetingEnterRepeatCountCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;

@@ -8,13 +8,15 @@ import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.UuidHandler;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
 import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.CallbackType;
+import com.xelari.presencebot.telegram.operation.callback.TelegramCallback;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.SHOW_MEETINGS_ALL_MEETINGS)
 public class ShowMeetingAllCallbackHandler implements CallbackHandler {
 
     private final FindAllMeetingsForUserUseCase findAllMeetingsForUserUseCase;

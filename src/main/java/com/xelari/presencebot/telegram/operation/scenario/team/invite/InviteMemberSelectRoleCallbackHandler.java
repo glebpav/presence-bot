@@ -5,14 +5,10 @@ import com.xelari.presencebot.application.dto.team.CreateTeamTokenRequest;
 import com.xelari.presencebot.domain.entity.team.TeamMember;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.config.InvitationTokenConfig;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
-import com.xelari.presencebot.telegram.operation.callback.CallbackType;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.ui.ButtonBuilder;
 import com.xelari.presencebot.telegram.ui.ButtonDescription;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -20,8 +16,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.INVITE_MEMBER_SELECT_ROLE)
 public class InviteMemberSelectRoleCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;
@@ -64,3 +60,4 @@ public class InviteMemberSelectRoleCallbackHandler implements CallbackHandler {
     }
 
 }
+

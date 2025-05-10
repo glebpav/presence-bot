@@ -8,6 +8,7 @@ import com.xelari.presencebot.telegram.UuidHandler;
 import com.xelari.presencebot.telegram.operation.callback.Callback;
 import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
 import com.xelari.presencebot.telegram.operation.callback.CallbackType;
+import com.xelari.presencebot.telegram.operation.callback.TelegramCallback;
 import com.xelari.presencebot.telegram.ui.ButtonBuilder;
 import com.xelari.presencebot.telegram.ui.ButtonDescription;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.CREATE_MEETING)
 public class CreateMeetingSelectTeamCallbackHandler implements CallbackHandler {
 
     private final ButtonBuilder buttonBuilder;

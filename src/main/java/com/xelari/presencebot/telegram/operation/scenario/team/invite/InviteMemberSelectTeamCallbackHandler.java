@@ -5,10 +5,7 @@ import com.xelari.presencebot.application.usecase.team.FindManagingTeamsUseCase;
 import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.JsonHandler;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
-import com.xelari.presencebot.telegram.operation.callback.CallbackType;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -19,8 +16,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.INVITE_MEMBER)
 public class InviteMemberSelectTeamCallbackHandler implements CallbackHandler {
 
     private final FindManagingTeamsUseCase findManagingTeamsUseCase;
@@ -83,3 +80,4 @@ public class InviteMemberSelectTeamCallbackHandler implements CallbackHandler {
     }
 
 }
+

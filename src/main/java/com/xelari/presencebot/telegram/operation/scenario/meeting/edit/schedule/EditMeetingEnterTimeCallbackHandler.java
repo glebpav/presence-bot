@@ -2,21 +2,17 @@ package com.xelari.presencebot.telegram.operation.scenario.meeting.edit.schedule
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
-import com.xelari.presencebot.telegram.operation.dialog.DialogHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.CHANGE_MEETING_CHANGE_TIME)
 public class EditMeetingEnterTimeCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;

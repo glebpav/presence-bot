@@ -4,18 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.application.exception.meeting.MeetingsNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.FindMeetingsForTeamUseCase;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.SHOW_MEETINGS_WITH_SELECTED_TEAM)
 public class ShowMeetingForTeamCallbackHandler implements CallbackHandler {
 
     private final FindMeetingsForTeamUseCase findMeetingsForTeamUseCase;

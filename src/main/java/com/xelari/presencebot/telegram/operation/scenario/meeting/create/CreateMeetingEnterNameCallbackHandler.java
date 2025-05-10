@@ -3,9 +3,7 @@ package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +13,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.CREATE_MEETING_TEAM_SELECTED)
 public class CreateMeetingEnterNameCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;

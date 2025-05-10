@@ -3,18 +3,15 @@ package com.xelari.presencebot.telegram.operation.scenario.meeting.edit.delete;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xelari.presencebot.application.usecase.meeting.DeleteMeetingUseCase;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.operation.callback.Callback;
-import com.xelari.presencebot.telegram.operation.callback.CallbackDataCache;
-import com.xelari.presencebot.telegram.operation.callback.CallbackHandler;
+import com.xelari.presencebot.telegram.operation.callback.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.UUID;
 
-@Component
 @RequiredArgsConstructor
+@TelegramCallback(CallbackType.CHANGE_MEETING_DELETE)
 public class EditMeetingDeleteCallbackHandler implements CallbackHandler {
 
     private final CallbackDataCache callbackDataCache;
@@ -35,3 +32,4 @@ public class EditMeetingDeleteCallbackHandler implements CallbackHandler {
         return message;
     }
 }
+
