@@ -1,4 +1,4 @@
-package com.xelari.presencebot.telegram.operation.scenario.start;
+package com.xelari.presencebot.telegram.operation.scenario.common;
 
 import com.xelari.presencebot.application.dto.user.UserCreationRequest;
 import com.xelari.presencebot.application.exception.user.UserAlreadyExistsException;
@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @RequiredArgsConstructor
 @TelegramCommand("/start")
-public class StartCommand implements CommandHandler {
+public class StartCommandHandler implements CommandHandler {
 
     private final AddUserUseCase addUserUseCase;
 

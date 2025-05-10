@@ -16,6 +16,7 @@ public class Constants {
     public static final String HEALTH_MESSAGE = "Bot is alive";
 
     public static final String UNKNOWN_COMMAND = "Sorry, I don't know this command";
+    public static final String HELP_COMMAND_MESSAGE = "This bot is ";
     public static final String CANT_UNDERSTAND = "Sorry, I can't understand your input";
     public static final String ERROR = "Internal error";
     public static final String JSON_ERROR = "JSON error";

@@ -1,4 +1,4 @@
-package com.xelari.presencebot.telegram.operation.scenario.start;
+package com.xelari.presencebot.telegram.operation.scenario.common;
 
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.command.CommandHandler;
@@ -8,7 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 
 @TelegramCommand("/health")
-public class HealthCommand implements CommandHandler {
+public class HealthCommandHandler implements CommandHandler {
 
     @Override
     public SendMessage apply(Update update) {
