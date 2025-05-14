@@ -48,7 +48,6 @@ public class CreateMeetingUseCase {
         }
 
         for (int i = 0; i < repeatCount; i++) {
-            System.out.println("Meeting name: " + request.name());
             Meeting meeting = createSingleMeeting(
                     request.name(),
                     request.description(),

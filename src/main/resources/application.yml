@@ -43,3 +43,9 @@ bot:
 
 invitation:
   token-expiration-days: 1
+
+meeting:
+  reminder:
+    check-interval-ms: 60_000
+    № check-interval-ms: 600
+    notification-interval-minutes: 30

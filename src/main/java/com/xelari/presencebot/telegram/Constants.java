@@ -5,6 +5,8 @@ import com.xelari.presencebot.domain.entity.token.InvitationToken;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import com.xelari.presencebot.domain.entity.team.Team;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -96,6 +98,45 @@ public class Constants {
                     .append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public static String MEETING_ALERT_MESSAGE(MeetingResponse meetingResponse) {
+        LocalDateTime scheduledTime = meetingResponse.scheduledTime();
+        String formattedTime = scheduledTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(now, scheduledTime);
+        long minutes = duration.toMinutes();
+
+        long days = minutes / 1440;
+        long hours = (minutes % 1440) / 60;
+        long remainingMinutes = minutes % 60;
+
+        StringBuilder timeUntilBuilder = new StringBuilder();
+        if (days > 0) {
+            timeUntilBuilder.append(days).append(" day(s) ");
+        }
+        if (hours > 0) {
+            timeUntilBuilder.append(hours).append(" hour(s) ");
+        }
+        if (remainingMinutes > 0) {
+            timeUntilBuilder.append(remainingMinutes).append(" minute(s) ");
+        }
+        String timeUntil = timeUntilBuilder.toString().trim();
+
+        StringBuilder message = new StringBuilder();
+        message.append("⏰ Reminder: Your meeting '").append(meetingResponse.name()).append("' with Team '").append(meetingResponse.teamName()).append("' is starting soon!\n");
+        message.append("📅 Scheduled for: ").append(formattedTime).append(" (in ").append(timeUntil).append(")\n");
+        message.append("⏳ Duration: ").append(meetingResponse.durationMinutes()).append(" minutes\n");
+
+        String description = meetingResponse.description();
+        if (description != null && !description.isBlank()) {
+            message.append("📝 Description: ").append(description).append("\n");
+        }
+
+        message.append("\nLooking forward to seeing you there!");
+
+        return message.toString();
     }
 
     private static String escapeHtml(String input) {

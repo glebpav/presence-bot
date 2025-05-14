@@ -18,8 +18,6 @@ import java.util.Set;
 @Table(name = "meeting")
 public class Meeting extends AbstractEntity {
 
-    // TODO: add name and description
-
     @Column(
             name = "name",
             nullable = false

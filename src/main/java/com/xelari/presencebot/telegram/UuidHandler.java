@@ -1,15 +1,15 @@
 package com.xelari.presencebot.telegram;
 
-import java.nio.ByteBuffer;
 import java.util.UUID;
 
 public class UuidHandler {
 
     public static UUID longToUUID(long value) {
-        ByteBuffer buffer = ByteBuffer.allocate(16);
-        buffer.putLong(0, 0);
-        buffer.putLong(8, value);
-        return new UUID(buffer.getLong(0), buffer.getLong(8));
+        return new UUID(value, 0L);
+    }
+
+    public static long uuidToLong(UUID uuid) {
+        return uuid.getMostSignificantBits();
     }
 
 }
