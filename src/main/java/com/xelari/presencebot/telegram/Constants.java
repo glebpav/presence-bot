@@ -12,34 +12,34 @@ public class Constants {
 
     public static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm";
 
-    public static final String START_MESSAGE = "Hello, this is ...";
-    public static final String HEALTH_MESSAGE = "Bot is alive";
+    public static final String START_MESSAGE = "👋 Hello, this is ...";
+    public static final String HEALTH_MESSAGE = "🟢 Bot is alive and ready to go!";
 
-    public static final String UNKNOWN_COMMAND = "Sorry, I don't know this command";
-    public static final String HELP_COMMAND_MESSAGE = "This bot is ";
-    public static final String CANT_UNDERSTAND = "Sorry, I can't understand your input";
-    public static final String ERROR = "Internal error";
-    public static final String JSON_ERROR = "JSON error";
+    public static final String UNKNOWN_COMMAND = "❓ Sorry, I don't know this command.";
+    public static final String HELP_COMMAND_MESSAGE = "🤖 This bot helps you manage meetings and teams!";
+    public static final String CANT_UNDERSTAND = "🤔 Sorry, I can't understand your input.";
+    public static final String ERROR = "⚠️ Internal error occurred. Please try again later.";
+    public static final String JSON_ERROR = "⚙️ JSON error. Something went wrong with the data.";
 
     public static final String SPACE_BETWEEN = "\n\n";
-    public static final String INPUT_CANT_BE_BLANK_MESSAGE = "Your input can't be blank";
-    public static final String SELECT_OPTION_MESSAGE = "Select option:";
-    public static final String GREETING_MESSAGE = "Welcome to Xelari-presence-bot!";
-    public static final String SUCCESSFULLY_ADDED_MESSAGE = "Successfully register you!";
-    public static final String USER_ALREADY_EXISTS_MESSAGE = "It seamed that you are already registered";
-    public static final String USER_NOT_FOUND_MESSAGE = "It seamed that you are not registered!";
-    public static final String NO_BELONG_TEAM_MESSAGE = "It seamed that you doesn't belong to any team!";
-    public static final String USER_HAVE_NOT_MANAGING_TEAMS_MESSAGE = "It seems that you haven't managed teams!";
-    public static final String SELECT_TEAM_MESSAGE = "Select team:";
-    public static final String SELECT_ROLE_MESSAGE = "Select role:";
-    public static final String ENTER_TEAM_NAME_MESSAGE = "Please, enter team name";
-    public static final String JOIN_TEAM_MESSAGE = "Please, enter invitation token";
-    public static final String TEAM_WAS_CREATED_MESSAGE = "Successfully create team!";
-    public static final String TEAM_ALREADY_EXISTS_MESSAGE = "Team with this name already exists!";
-    public static final String INVITATION_TOKEN_CREATED_MESSAGE = "Your invitation token was created successfully!";
-    public static final String TOKEN_NOT_EXISTS_MESSAGE = "Your invitation token does not exist!";
-    public static final String ALREADY_IN_TEAM_MESSAGE = "You are already in this team!";
-    public static final String TOKEN_EXPIRED_MESSAGE = "Your invitation token has expired!";
+    public static final String INPUT_CANT_BE_BLANK_MESSAGE = "✍️ Your input can't be blank.";
+    public static final String SELECT_OPTION_MESSAGE = "🔽 Select an option:";
+    public static final String GREETING_MESSAGE = "✨ Welcome to Xelari-presence-bot!";
+    public static final String SUCCESSFULLY_ADDED_MESSAGE = "✅ Successfully registered you!";
+    public static final String USER_ALREADY_EXISTS_MESSAGE = "ℹ️ It seems that you are already registered.";
+    public static final String USER_NOT_FOUND_MESSAGE = "❌ It seems that you are not registered!";
+    public static final String NO_BELONG_TEAM_MESSAGE = "👥 It seems that you don't belong to any team!";
+    public static final String USER_HAVE_NOT_MANAGING_TEAMS_MESSAGE = "🚫 It seems that you haven't managed any teams yet!";
+    public static final String SELECT_TEAM_MESSAGE = "👥 Select a team:";
+    public static final String SELECT_ROLE_MESSAGE = "👔 Select your role:";
+    public static final String ENTER_TEAM_NAME_MESSAGE = "✏️ Please, enter team name";
+    public static final String JOIN_TEAM_MESSAGE = "🗝️ Please, enter invitation token";
+    public static final String TEAM_WAS_CREATED_MESSAGE = "🎉 Successfully created a team!";
+    public static final String TEAM_ALREADY_EXISTS_MESSAGE = "⚠️ A team with this name already exists!";
+    public static final String INVITATION_TOKEN_CREATED_MESSAGE = "🎟️ Your invitation token was created successfully!";
+    public static final String TOKEN_NOT_EXISTS_MESSAGE = "❌ Your invitation token does not exist!";
+    public static final String ALREADY_IN_TEAM_MESSAGE = "👥 You are already in this team!";
+    public static final String TOKEN_EXPIRED_MESSAGE = "⏰ Your invitation token has expired!";
 
     public static String SUCCESSFUL_CREATE_INITIATION_TOKEN_MESSAGE(InvitationToken token) {
         return "<b>🎟️ Invitation Token Created 🎟️</b>\n\n" +
@@ -51,7 +51,7 @@ public class Constants {
                 token.getExpiresAt()
                         .format(DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm")) + "\n" +
                 "⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺⸺\n\n" +
-                "<i>Share this token securely!</i>";
+                "<i>🔐 Share this token securely!</i>";
     }
 
     public static String SUCCESSFUL_JOINED_TEAM_MESSAGE(Team team) {
@@ -69,23 +69,23 @@ public class Constants {
         );
     }
 
-    public static String ENTER_MEETING_NAME_MESSAGE = "Please, enter meeting name";
-    public static String INPUT_MEETING_TIME_MESSAGE = "Please, enter meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
-    public static String INPUT_NEW_MEETING_TIME_MESSAGE = "Please, enter new meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
-    public static String ENTER_MEETING_DURATION_MESSAGE = "Please, enter meeting duration (in minutes)";
-    public static String ENTER_MEETING_DESCRIPTION_MESSAGE = "Please, enter meeting description";
-    public static String ENTER_MEETING_REPEAT_COUNT_MESSAGE = "Please, enter repeat count";
-    public static String SELECT_MEETING_REPETITIONS_MESSAGE = "Please, enter count of repetitions:";
-    public static String MEETING_CREATED_SUCCESSFULLY_MESSAGE = "Meeting(s) was(were) created successfully!";
-    public static String INCORRECT_TIME_FORMAT_MESSAGE = "I can't understand your input";
+    public static String ENTER_MEETING_NAME_MESSAGE = "📌 Please, enter meeting name";
+    public static String INPUT_MEETING_TIME_MESSAGE = "🕘 Please, enter meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
+    public static String INPUT_NEW_MEETING_TIME_MESSAGE = "🕥 Please, enter new meeting time (in format <code>yyyy.MM.dd HH:mm</code>)";
+    public static String ENTER_MEETING_DURATION_MESSAGE = "⏱️ Please, enter meeting duration (in minutes)";
+    public static String ENTER_MEETING_DESCRIPTION_MESSAGE = "📝 Please, enter meeting description";
+    public static String ENTER_MEETING_REPEAT_COUNT_MESSAGE = "🔁 Please, enter repeat count";
+    public static String SELECT_MEETING_REPETITIONS_MESSAGE = "🔄 Please, enter count of repetitions:";
+    public static String MEETING_CREATED_SUCCESSFULLY_MESSAGE = "✅ Meeting(s) was(were) created successfully!";
+    public static String INCORRECT_TIME_FORMAT_MESSAGE = "❌ I can't understand your input. Please use correct time format.";
 
-    public static String SELECT_MEETING_SHOW_TYPE_MESSAGE = "Please, select to show meeting for appropriate team or all your meetings";
-    public static String SELECT_TEAM_FOR_MEETING_MESSAGE = "Please, select team witch meeting you want to edit";
-    public static String NO_MEETING_WAS_FOUND_MESSAGE = "No meeting was found!";
-    public static String NO_MANAGING_MEETING_WAS_FOUND_MESSAGE = "No managing meeting was found!";
-    public static String NO_MATCHING_MEETING_IN_LIST_MESSAGE = "No matching meeting in list!";
-    public static String MEETING_DELETED_SUCCESSFULLY_MESSAGE = "Meeting was deleted successfully!";
-    public static String MEETING_TIME_WAS_CHANGED_SUCCESSFULLY_MESSAGE = "Meeting time was changed successfully!";
+    public static String SELECT_MEETING_SHOW_TYPE_MESSAGE = "📊 Please, select to show meeting for appropriate team or all your meetings";
+    public static String SELECT_TEAM_FOR_MEETING_MESSAGE = "🛠️ Please, select team whose meeting you want to edit";
+    public static String NO_MEETING_WAS_FOUND_MESSAGE = "🔍 No meeting was found!";
+    public static String NO_MANAGING_MEETING_WAS_FOUND_MESSAGE = "🚫 No managing meeting was found!";
+    public static String NO_MATCHING_MEETING_IN_LIST_MESSAGE = "🔎 No matching meeting in list!";
+    public static String MEETING_DELETED_SUCCESSFULLY_MESSAGE = "🗑️ Meeting was deleted successfully!";
+    public static String MEETING_TIME_WAS_CHANGED_SUCCESSFULLY_MESSAGE = "🕒 Meeting time was changed successfully!";
 
     public static String FOUND_MEETING_MESSAGE(List<MeetingResponse> meetings) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -100,8 +100,8 @@ public class Constants {
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;");
+                .replace("<", "<")
+                .replace(">", ">");
     }
 
 }
