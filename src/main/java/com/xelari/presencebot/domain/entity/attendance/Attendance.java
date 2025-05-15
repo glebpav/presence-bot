@@ -4,12 +4,14 @@ import com.xelari.presencebot.domain.entity.AbstractEntity;
 import com.xelari.presencebot.domain.entity.User;
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(
         uniqueConstraints = @UniqueConstraint(columnNames = {"meeting_id", "user_id"}),
         name = "attendance"
@@ -24,6 +26,7 @@ public class Attendance extends AbstractEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
+    // TODO: rename attending -> isAttending
     @Column(name = "attending")
     private Boolean attending;
 

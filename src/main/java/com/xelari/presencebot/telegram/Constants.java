@@ -2,7 +2,6 @@ package com.xelari.presencebot.telegram;
 
 import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.domain.entity.token.InvitationToken;
-import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import com.xelari.presencebot.domain.entity.team.Team;
 
 import java.time.Duration;
@@ -138,6 +137,9 @@ public class Constants {
 
         return message.toString();
     }
+
+    public static String THANKS_FOR_ATTENDANCE_MESSAGE = "❤️ We will be waiting for you!";
+    public static String USER_NOT_INVITED_FOR_MEETING_MESSAGE = "😕 Sorry, you are not invited for this meeting now";
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")
