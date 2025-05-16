@@ -28,4 +28,7 @@ public enum CallbackType {
 
     WILL_PRESENT,
     WILL_NOT_PRESENT,
+    ADD_REPORT_FOR_MEETING,
+    NOT_TO_ADD_REPORT_FOR_MEETING,
+
 }

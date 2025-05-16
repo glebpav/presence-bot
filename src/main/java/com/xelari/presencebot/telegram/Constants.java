@@ -140,6 +140,11 @@ public class Constants {
 
     public static String THANKS_FOR_ATTENDANCE_MESSAGE = "❤️ We will be waiting for you!";
     public static String USER_NOT_INVITED_FOR_MEETING_MESSAGE = "😕 Sorry, you are not invited for this meeting now";
+    public static String ADD_COMMENT_MESSAGE = "Would you like to add a comment?";
+    public static String WILL_BE_WAITING_NEXT_TIME_MESSAGE = "Ok, we will be waiting you next time!";
+    public static String WRITE_COMMENT_MESSAGE = "Please, write a comment";
+    public static String NOT_IMPLEMENTED_YET_MESSAGE = "😕 Sorry, this function is not implemented yet";
+    public static String REPORT_WAS_SENT_SUCCESSFULLY_MESSAGE = "✅ You report was sent successfully!";
 
     private static String escapeHtml(String input) {
         return input.replace("&", "&amp;")

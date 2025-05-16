@@ -16,4 +16,8 @@ public interface DialogHandler {
         );
     }
 
+    default String getMessageText(Update update) {
+        return update.getMessage().getText();
+    }
+
 }

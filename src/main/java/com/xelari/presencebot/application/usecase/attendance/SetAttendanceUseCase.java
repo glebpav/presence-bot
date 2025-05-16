@@ -43,13 +43,24 @@ public class SetAttendanceUseCase {
             throw new UserNotInvitedForMeetingException();
         }
 
-        attendanceRepository.save(
-                new Attendance(
-                        meeting,
-                        user,
-                        attendanceRequest.isAttending()
+        attendanceRepository
+                .findByMeetingIdAndUserId(
+                        meeting.getId(),
+                        user.getId()
                 )
-        );
+                .ifPresentOrElse(
+                        attendance -> {
+                            attendance.setAttending(attendanceRequest.isAttending());
+                            attendanceRepository.save(attendance);
+                        },
+                        () -> attendanceRepository.save(
+                                new Attendance(
+                                        meeting,
+                                        user,
+                                        attendanceRequest.isAttending()
+                                )
+                        )
+                );
 
     }
 
