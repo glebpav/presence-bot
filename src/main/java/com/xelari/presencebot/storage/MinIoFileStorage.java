@@ -2,7 +2,7 @@ package com.xelari.presencebot.storage;
 
 import com.xelari.presencebot.application.adapter.file.FileStorageBoundary;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -47,6 +47,7 @@ public class MinIoFileStorage implements FileStorageBoundary {
         return key;
     }
 
+    @Override
     public Boolean removeFile(String key) throws IOException {
         try {
             DeleteObjectRequest request = DeleteObjectRequest.builder()

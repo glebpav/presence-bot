@@ -1,6 +1,7 @@
 package com.xelari.presencebot.storage.config;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.context.annotation.Lazy;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
@@ -27,9 +28,6 @@ public class S3Config {
     @Value("${amazon.s3.endpoint}")
     private String endpoint;
 
-    @Value("${cloud.aws.s3.bucket}")
-    private String bucketName;
-
     @Value("${cloud.aws.region.static}")
     private String region;
 
@@ -41,21 +39,8 @@ public class S3Config {
                         AwsBasicCredentials.create(accessKey, secretKey)
                 ))
                 .region(Region.of(region))
+                .forcePathStyle(true)
                 .build();
     }
 
-    @PostConstruct
-    public void init() {
-        try {
-            S3Client client = s3Client();
-            if (!client.listBuckets().buckets().stream()
-                    .anyMatch(b -> b.name().equals(bucketName))) {
-                client.createBucket(CreateBucketRequest.builder()
-                        .bucket(bucketName)
-                        .build());
-            }
-        } catch (S3Exception e) {
-            throw new RuntimeException("Error while initialize MinIO: " + e.awsErrorDetails().errorMessage(), e);
-        }
-    }
 }
