@@ -37,6 +37,22 @@ spring:
   #   database-change-log-table: _databasechangelog
   #   database-change-log-lock-table: _databasechangeloglock
 
+cloud:
+  aws:
+    credentials:
+      accessKey: ${MINIO_ROOT_USER}
+      secretKey: ${MINIO_ROOT_PASSWORD}
+    s3:
+      bucket: my-bucket
+    region:
+      static: eu-west-2
+
+amazon:
+  s3:
+    endpoint: http://localhost:9000
+    path-style-access: true
+    disable-chunked-encoding: true
+
 bot:
   name:"Xelari-presence-bot"
   token:${BOT_TOKEN}

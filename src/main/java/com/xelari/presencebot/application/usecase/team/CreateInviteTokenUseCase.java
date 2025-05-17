@@ -1,6 +1,6 @@
 package com.xelari.presencebot.application.usecase.team;
 
-import com.xelari.presencebot.application.dto.team.CreateTeamTokenRequest;
+import com.xelari.presencebot.application.adapter.dto.team.CreateTeamTokenRequest;
 import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.persistence.InvitationTokenRepository;
 import com.xelari.presencebot.application.persistence.TeamRepository;

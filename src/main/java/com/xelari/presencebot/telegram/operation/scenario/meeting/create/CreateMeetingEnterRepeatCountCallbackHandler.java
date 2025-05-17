@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
-import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
+import com.xelari.presencebot.application.adapter.dto.meeting.CreateMeetingRequest;
 import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.CreateMeetingUseCase;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
@@ -9,7 +9,6 @@ import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

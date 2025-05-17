@@ -1,7 +1,7 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.event.remind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xelari.presencebot.application.dto.attendance.AttendanceRequest;
+import com.xelari.presencebot.application.adapter.dto.attendance.AttendanceRequest;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.*;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;

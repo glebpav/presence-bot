@@ -1,4 +1,4 @@
-package com.xelari.presencebot.application.dto.meeting;
+package com.xelari.presencebot.application.adapter.dto.meeting;
 
 import com.xelari.presencebot.domain.entity.meeting.Meeting;
 

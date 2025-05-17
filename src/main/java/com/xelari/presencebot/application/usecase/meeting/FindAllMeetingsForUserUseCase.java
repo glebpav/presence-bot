@@ -1,12 +1,11 @@
 package com.xelari.presencebot.application.usecase.meeting;
 
-import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
+import com.xelari.presencebot.application.adapter.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.application.exception.meeting.MeetingsNotFoundException;
 import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.persistence.MeetingRepository;
 import com.xelari.presencebot.application.persistence.TeamMemberRepository;
 import com.xelari.presencebot.application.persistence.UserRepository;
-import com.xelari.presencebot.domain.entity.meeting.Meeting;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

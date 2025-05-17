@@ -1,7 +1,7 @@
 package com.xelari.presencebot.application.usecase.meeting;
 
-import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
-import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
+import com.xelari.presencebot.application.adapter.dto.meeting.CreateMeetingRequest;
+import com.xelari.presencebot.application.adapter.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.application.exception.team.TeamNotFoundException;
 import com.xelari.presencebot.application.persistence.MeetingRepository;
 import com.xelari.presencebot.application.persistence.TeamRepository;
@@ -10,7 +10,6 @@ import com.xelari.presencebot.domain.entity.team.Team;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.jdbc.Expectation;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

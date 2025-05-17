@@ -1,6 +1,6 @@
 package com.xelari.presencebot.application.usecase.team;
 
-import com.xelari.presencebot.application.dto.team.UseInvitationTokenRequest;
+import com.xelari.presencebot.application.adapter.dto.team.UseInvitationTokenRequest;
 import com.xelari.presencebot.application.exception.token.TokenExpiredException;
 import com.xelari.presencebot.application.exception.token.TokenNotFoundException;
 import com.xelari.presencebot.application.exception.user.UserIsAlreadyMemberException;

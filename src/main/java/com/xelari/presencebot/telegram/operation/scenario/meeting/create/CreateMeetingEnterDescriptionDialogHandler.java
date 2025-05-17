@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
-import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
+import com.xelari.presencebot.application.adapter.dto.meeting.CreateMeetingRequest;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;

@@ -1,4 +1,4 @@
-package com.xelari.presencebot.application.dto.meeting;
+package com.xelari.presencebot.application.adapter.dto.meeting;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

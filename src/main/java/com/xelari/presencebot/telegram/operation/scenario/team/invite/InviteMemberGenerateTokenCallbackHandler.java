@@ -1,12 +1,11 @@
 package com.xelari.presencebot.telegram.operation.scenario.team.invite;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xelari.presencebot.application.dto.team.CreateTeamTokenRequest;
+import com.xelari.presencebot.application.adapter.dto.team.CreateTeamTokenRequest;
 import com.xelari.presencebot.application.usecase.team.CreateInviteTokenUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

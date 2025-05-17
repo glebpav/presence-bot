@@ -1,10 +1,8 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.edit;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
+import com.xelari.presencebot.application.adapter.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.application.exception.meeting.MeetingsNotFoundException;
-import com.xelari.presencebot.application.exception.user.UserNotFoundException;
-import com.xelari.presencebot.application.usecase.meeting.FindAllManagingMeetingsForUserUseCase;
 import com.xelari.presencebot.application.usecase.meeting.FindMeetingsForTeamUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.*;

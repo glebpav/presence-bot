@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.edit.schedule;
 
-import com.xelari.presencebot.application.dto.meeting.ChangeMeetingTimeRequest;
+import com.xelari.presencebot.application.adapter.dto.meeting.ChangeMeetingTimeRequest;
 import com.xelari.presencebot.application.exception.meeting.MeetingsNotFoundException;
 import com.xelari.presencebot.application.usecase.meeting.ChangeMeetingTimeUseCase;
 import com.xelari.presencebot.telegram.Constants;

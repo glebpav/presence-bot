@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.create;
 
-import com.xelari.presencebot.application.dto.meeting.CreateMeetingRequest;
+import com.xelari.presencebot.application.adapter.dto.meeting.CreateMeetingRequest;
 import com.xelari.presencebot.domain.valueobject.meeting.MeetingRepeat;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.operation.callback.CallbackType;
@@ -13,9 +13,6 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Component

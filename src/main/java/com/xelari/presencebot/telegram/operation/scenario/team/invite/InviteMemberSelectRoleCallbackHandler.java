@@ -1,7 +1,7 @@
 package com.xelari.presencebot.telegram.operation.scenario.team.invite;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.xelari.presencebot.application.dto.team.CreateTeamTokenRequest;
+import com.xelari.presencebot.application.adapter.dto.team.CreateTeamTokenRequest;
 import com.xelari.presencebot.domain.entity.team.TeamMember;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.config.InvitationTokenConfig;

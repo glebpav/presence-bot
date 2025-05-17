@@ -1,11 +1,10 @@
 package com.xelari.presencebot.telegram.operation.scenario.team.create;
 
-import com.xelari.presencebot.application.dto.team.CreateTeamRequest;
+import com.xelari.presencebot.application.adapter.dto.team.CreateTeamRequest;
 import com.xelari.presencebot.application.exception.team.TeamAlreadyExistsException;
 import com.xelari.presencebot.application.exception.user.UserNotFoundException;
 import com.xelari.presencebot.application.usecase.team.CreateTeamUseCase;
 import com.xelari.presencebot.telegram.Constants;
-import com.xelari.presencebot.telegram.UuidHandler;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDataCache;
 import com.xelari.presencebot.telegram.operation.dialog.DialogDispatcher;
 import com.xelari.presencebot.telegram.operation.dialog.DialogHandler;

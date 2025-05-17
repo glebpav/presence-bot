@@ -1,4 +1,4 @@
-package com.xelari.presencebot.application.dto.user;
+package com.xelari.presencebot.application.adapter.dto.user;
 
 import java.util.UUID;
 

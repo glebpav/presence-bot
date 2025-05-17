@@ -1,6 +1,6 @@
 package com.xelari.presencebot.telegram.operation.scenario.meeting.event.remind;
 
-import com.xelari.presencebot.application.dto.meeting.MeetingResponse;
+import com.xelari.presencebot.application.adapter.dto.meeting.MeetingResponse;
 import com.xelari.presencebot.application.usecase.meeting.event.remind.RemindMeetingUseCase;
 import com.xelari.presencebot.telegram.Constants;
 import com.xelari.presencebot.telegram.TelegramBot;
