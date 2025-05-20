@@ -1,0 +1,23 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    show-sql: false
+    properties:
+      hibernate.format_sql: false
+
+logging:
+  level:
+    root: INFO
+    com.example.presencebot: INFO
+    org.springframework: WARN
+    org.hibernate: WARN
+    org.apache.tomcat: WARN
+    org.springframework.web: WARN
+
+  pattern:
+    console: '{"timestamp": "%d{ISO8601}", "level": "%p", "logger": "%c", "message": "%m"}%n'
+
+  file:
+    name: ./logs/presence-bot.log
