@@ -19,14 +19,11 @@ public class BucketInitializer {
     @PostConstruct
     public void init() {
         try {
-            if (!s3Client.listBuckets().buckets().stream()
-                    .anyMatch(b -> b.name().equals(bucketName))) {
-                s3Client.createBucket(CreateBucketRequest.builder()
-                        .bucket(bucketName)
-                        .build());
+            if (!s3Client.listBuckets().buckets().stream().anyMatch(b -> b.name().equals(bucketName))) {
+                s3Client.createBucket(CreateBucketRequest.builder().bucket(bucketName).build());
             }
         } catch (S3Exception e) {
-            throw new RuntimeException("Ошибка при инициализации MinIO: " + e.awsErrorDetails().errorMessage(), e);
+            throw new RuntimeException("Error while initialization MinIO: " + e.awsErrorDetails().errorMessage(), e);
         }
     }
 

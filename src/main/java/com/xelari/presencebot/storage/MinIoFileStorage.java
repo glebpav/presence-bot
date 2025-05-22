@@ -4,7 +4,6 @@ import com.xelari.presencebot.application.adapter.file.FileStorageBoundary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
@@ -12,9 +11,7 @@ import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
+import java.io.InputStream;
 import java.util.UUID;
 
 @Service
@@ -27,22 +24,21 @@ public class MinIoFileStorage implements FileStorageBoundary {
     private String bucket;
 
     @Override
-    public String uploadFile(MultipartFile file) throws IOException {
-        String key = UUID.randomUUID() + "-" + file.getOriginalFilename();
+    public String uploadFile(InputStream fileStream, String originalFilename, long contentSize) throws IOException {
+        String key = UUID.randomUUID() + "-" + originalFilename;
 
-        Path tempFile = Files.createTempFile("upload-", ".tmp");
-        try {
-            Files.copy(file.getInputStream(), tempFile, StandardCopyOption.REPLACE_EXISTING);
+        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                .bucket(bucket)
+                .key(key)
+                .build();
 
-            PutObjectRequest putObjectRequest = PutObjectRequest.builder()
-                    .bucket(bucket)
-                    .key(key)
-                    .build();
-
-            s3Client.putObject(putObjectRequest, RequestBody.fromFile(tempFile.toFile()));
-        } finally {
-            Files.deleteIfExists(tempFile);
-        }
+        s3Client.putObject(
+                putObjectRequest,
+                RequestBody.fromInputStream(
+                        fileStream,
+                        contentSize
+                )
+        );
 
         return key;
     }
@@ -61,4 +57,5 @@ public class MinIoFileStorage implements FileStorageBoundary {
             throw new IOException("Error while deleting file in S3: " + e.awsErrorDetails().errorMessage(), e);
         }
     }
+
 }

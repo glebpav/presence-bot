@@ -7,11 +7,13 @@ import com.xelari.presencebot.domain.entity.meeting.MeetingAlert;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 @Component
 @Transactional
 @RequiredArgsConstructor
@@ -27,8 +29,6 @@ public class RemindMeetingUseCase {
     @Scheduled(fixedRateString = "${meeting.reminder.check-interval-ms}")
     public void checkRemind() {
 
-        System.out.println("scheduled meeting reminder");
-
         var meetings = meetingRepository.findUpcomingMeetingsWithoutAlerts(
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(
@@ -36,7 +36,7 @@ public class RemindMeetingUseCase {
                 )
         );
 
-        System.out.println("scheduled meeting reminder found " + meetings.size() + " meetings");
+        log.info("scheduled meeting reminder found {} meetings", meetings.size());
 
         meetings.forEach(meeting -> {
 
